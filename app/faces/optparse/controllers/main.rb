@@ -87,7 +87,7 @@ module Samling
 
       def select_and_run_context(options)
         puts "Time to grow, little #{options[:project_name]}..."
-        SpawnDirectoryStructure.run()
+        SpawnDirectoryStructure.run(options[:project_location], options[:project_name])
         puts "Created project structure in #{options[:project_location]}/#{options[:project_name].gsub(' ', '').underscore}."
       end
     end
