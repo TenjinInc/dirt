@@ -3,4 +3,4 @@ require 'bundler'
 Bundler.setup(:default)
 require_relative 'controllers/main'
 
-Main.new.execute!(ARGV.dup)
+Samling::Cli::Main.new.execute!(ARGV.dup)

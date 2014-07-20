@@ -1,11 +1,13 @@
 Feature: it should optionally create a git repository with the project in it
 
-  Scenario Outline: it should create a central git repo
+  Scenario Outline: it should create a central git repo on the given server
     When I run Samling with:
       | flag    | value               |
       | project | <project_directory> |
+      | host    | localhost           |
+      | user    | robin               |
     Then it should say "Initialized empty Git repository in /var/git/<project_directory>.git/"
-    And there should be a central git repository in "/var/git/test/<project_directory>.git"
+    And there should be a central git repository on localhost in "/var/git/test/<project_directory>.git"
   Examples:
     | project_directory |
     | my_project        |

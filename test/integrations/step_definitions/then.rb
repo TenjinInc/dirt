@@ -1,5 +1,5 @@
 Then(/^it should say "(.*?)"$/) do |msg|
-  pending 'check CLI response for the text'
+  @output.split("\n").should include msg
 end
 
 Then(/^there should be the following files:$/) do |table|

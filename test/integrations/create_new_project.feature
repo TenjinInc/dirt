@@ -6,23 +6,23 @@ Feature: it should create new projects
       | project  | <project_name> |
       | location | <parent_path>  |
     Then it should say "Time to grow, little <project_name>..."
-    And it should say "Created project structure in <parent_path>/<project_name>."
+    And it should say "Created project structure in <parent_path>/<project_directory>."
     And there should be the following files:
-      | path                                                     |
-      | <parent_path>/<project_name>/app/contexts/.gitkeep       |
-      | <parent_path>/<project_name>/app/contexts/roles/.gitkeep |
-      | <parent_path>/<project_name>/app/faces/.gitkeep          |
-      | <parent_path>/<project_name>/app/models/.gitkeep         |
-      | <parent_path>/<project_name>/config/.gitkeep             |
-      | <parent_path>/<project_name>/test/behaviours/.gitkeep    |
-      | <parent_path>/<project_name>/test/factories/.gitkeep     |
-      | <parent_path>/<project_name>/test/integrations/.gitkeep  |
+      | path                                                          |
+      | <parent_path>/<project_directory>/app/contexts/.gitkeep       |
+      | <parent_path>/<project_directory>/app/contexts/roles/.gitkeep |
+      | <parent_path>/<project_directory>/app/faces/.gitkeep          |
+      | <parent_path>/<project_directory>/app/models/.gitkeep         |
+      | <parent_path>/<project_directory>/config/.gitkeep             |
+      | <parent_path>/<project_directory>/test/behaviours/.gitkeep    |
+      | <parent_path>/<project_directory>/test/factories/.gitkeep     |
+      | <parent_path>/<project_directory>/test/integrations/.gitkeep  |
   Examples:
-    | parent_path           | project_name  |
-    |                       | test_project  |
-    | a_path/to/the project | test_project  |
-    |                       | other_project |
-    | some/other/path       | other_project |
+    | parent_path           | project_directory | project_name  |
+    |                       | test_project      | Test Project  |
+    | a_path/to/the project | test_project      | Test Project  |
+    |                       | other_project     | Other Project |
+    | some/other/path       | other_project     | Other Project |
 
   Scenario: it should require a project name
     When I run Samling
