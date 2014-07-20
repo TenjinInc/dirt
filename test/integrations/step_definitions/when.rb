@@ -7,11 +7,11 @@ When(/^I run Samling with:$/) do |table|
   out = StringIO.new
   err = StringIO.new
 
-  Samling::Cli::Main.new(input, out, err).execute!(options)
-
   @output = out.string
+
+  Samling::Cli::Main.new(input, out, err).execute!(options)
 end
 
 When(/^I run Samling$/) do
-  step('I run Samling with:', table([%w{flag value}]))
+  expect { step('I run Samling with:', table([%w{flag value}])) }.to raise_error(SystemExit)
 end

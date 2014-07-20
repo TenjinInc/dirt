@@ -1,5 +1,9 @@
 Feature: it should optionally create a git repository with the project in it
 
+  # TODO test:
+  # that it creates all gitkeeps in all empty directories.
+  # that it creates a .gitignore file
+
   Scenario Outline: it should create a central git repo on the given server
     When I run Samling with:
       | flag    | value               |

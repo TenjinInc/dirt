@@ -1,4 +1,4 @@
-Feature: it should create new projects
+Feature: it should create a new project's directory structure
 
   Scenario Outline: it should create the project structure
     When I run Samling with:
@@ -7,16 +7,16 @@ Feature: it should create new projects
       | location | <parent_path>  |
     Then it should say "Time to grow, little <project_name>..."
     And it should say "Created project structure in <parent_path>/<project_directory>."
-    And there should be the following files:
-      | path                                                          |
-      | <parent_path>/<project_directory>/app/contexts/.gitkeep       |
-      | <parent_path>/<project_directory>/app/contexts/roles/.gitkeep |
-      | <parent_path>/<project_directory>/app/faces/.gitkeep          |
-      | <parent_path>/<project_directory>/app/models/.gitkeep         |
-      | <parent_path>/<project_directory>/config/.gitkeep             |
-      | <parent_path>/<project_directory>/test/behaviours/.gitkeep    |
-      | <parent_path>/<project_directory>/test/factories/.gitkeep     |
-      | <parent_path>/<project_directory>/test/integrations/.gitkeep  |
+    And ls should show the following files in "<parent_path>/<project_directory>":
+      | path               |
+      | app/contexts       |
+      | app/contexts/roles |
+      | app/faces          |
+      | app/models         |
+      | config             |
+      | test/behaviours    |
+      | test/factories     |
+      | test/integrations  |
   Examples:
     | parent_path           | project_directory | project_name  |
     |                       | test_project      | Test Project  |
@@ -26,7 +26,7 @@ Feature: it should create new projects
 
   Scenario: it should require a project name
     When I run Samling
-    Then it should say "I need the project name. Please supply --project-name argument."
+    Then it should say "Usage: samling [options] arguments"
 
   # error cases, etc.
   # - the project directory, or some file inside, already exists. Overwrite?
