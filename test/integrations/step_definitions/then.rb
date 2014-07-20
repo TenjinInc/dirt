@@ -3,7 +3,8 @@ Then(/^it should say "(.*?)"$/) do |msg|
 end
 
 Then(/^ls should show the following files in "(.*?)":$/) do |location, table|
-  paths = Dir[location]
+  Dir.chdir(location)
+  paths = Dir['**/*']
 
   table.hashes.collect do |h|
     paths.should include h[:path]

@@ -5,13 +5,23 @@ module Samling
     end
 
     def call
-      project_root = File.expand_path(@project_directory, @project_location)
+      project_root = @project_location + '/' + @project_directory
 
-      # FileUtils.mkdir(project_root)
+      FileUtils.mkdir_p(project_root)
 
-      FileUtils.mkdir(project_root)
+      paths = ['app/contexts/roles',
+               'app/faces',
+               'app/models',
+               'config',
+               'test/behaviours/step_definitions',
+               'test/behaviours/support',
+               'test/factories/',
+               'test/integrations/step_definitions',
+               'test/integrations/support']
 
-      FileUtils.mkdir(File.expand_path('app/contexts', project_root))
+      paths.each do |path|
+        FileUtils.mkdir_p(File.expand_path(path, project_root))
+      end
     end
   end
 end
