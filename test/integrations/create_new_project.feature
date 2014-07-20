@@ -1,7 +1,10 @@
 Feature: it should create new projects
 
   Scenario Outline: it should create the project structure
-    When I run Samling with --project "<project_name>" and --location "<parent_path>"
+    When I run Samling with:
+      | flag     | value          |
+      | project  | <project_name> |
+      | location | <parent_path>  |
     Then it should say "Time to grow, little <project_name>..."
     And it should say "Created project structure in <parent_path>/<project_name>."
     And there should be the following files:
@@ -21,18 +24,13 @@ Feature: it should create new projects
     |                       | other_project |
     | some/other/path       | other_project |
 
-  Scenario: it should create a git repo
-    And it should say "Created main git repository at <git_bare>"
-    And there should be a git repository at <git_bare>
-
-  Scenario:it should push all files
-    When I run Samling with "<project_name>"
-    Then it should say "Pushed initial structure to <git_bare>."
-
+  Scenario: it should require a project name
+    When I run Samling
+    Then it should say "I need the project name. Please supply --project-name argument."
 
   # error cases, etc.
   # - the project directory, or some file inside, already exists. Overwrite?
-  # - the project directory is
+  # - the project directory is unwritable (permissions, etc)
 
 
 
