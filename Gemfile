@@ -15,6 +15,8 @@ group :test do
 
   gem 'fakefs'
 
+  gem 'aruba-doubles'
+
   gem 'factory_girl', '~> 4.0'
   gem 'parallel_tests'
 end

@@ -5,7 +5,7 @@ module Samling
     end
 
     def call
-      project_root = @project_location + '/' + @project_directory
+      project_root = Pathname.new(@project_location || '') + @project_directory
 
       FileUtils.mkdir_p(project_root)
 

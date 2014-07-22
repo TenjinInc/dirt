@@ -10,12 +10,12 @@ Feature: it should optionally create a git repository with the project in it
       | project | <project_directory> |
       | host    | localhost           |
       | user    | robin               |
-    Then it should say "Initialized empty Git repository in /var/git/<project_directory>.git/"
-    And there should be a central git repository on localhost in "/var/git/test/<project_directory>.git"
+    Then it should call "git init --bare <project_directory>.git"
+    And it should say "Initialized empty Git repository in <project_directory>.git/"
   Examples:
-    | project_directory |
-    | my_project        |
-    | my_other_project  |
+    | project_directory         |
+    | my_project                |
+    | /var/git/my_other_project |
 
   Scenario Outline:it should pull the repository down
     When I run Samling with:

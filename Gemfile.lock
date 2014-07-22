@@ -1,7 +1,7 @@
 PATH
   remote: ../dirt/
   specs:
-    dirt (2.1.1)
+    dirt (2.2.0)
       activesupport (>= 3.2)
 
 GEM
@@ -14,6 +14,9 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.6)
+    aruba-doubles (1.2.1)
+      cucumber (>= 1.0.2)
+      rspec (>= 2.6.0)
     builder (3.2.2)
     capybara (2.3.0)
       mime-types (>= 1.16)
@@ -75,6 +78,7 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
+  aruba-doubles
   capybara
   cucumber
   dirt!

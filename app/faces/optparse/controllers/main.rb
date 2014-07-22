@@ -88,6 +88,8 @@ module Samling
       def select_and_run_context(options)
         project_directory = options[:project_name].gsub(' ', '').underscore
 
+        puts `git init --bare #{project_directory}.git`
+
         puts "Time to grow, little #{options[:project_name]}..."
         SpawnDirectoryStructure.run(options[:project_location], project_directory)
         puts "Created project structure in #{options[:project_location]}/#{project_directory}."
