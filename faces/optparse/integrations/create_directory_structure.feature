@@ -8,20 +8,16 @@ Feature: it should create a new project's directory structure
     Then it should say "Time to grow, little <project_name>..."
     And it should say "Created project structure in <parent_path>/<project_directory>."
     And ls should show the following files in "<parent_path>/<project_directory>":
-      | path                               |
-      | app/contexts                       |
-      | app/contexts/roles                 |
-      | app/faces                          |
-      | app/models                         |
-      | config                             |
-      | test/behaviours                    |
-      | test/behaviours/step_definitions   |
-      | test/behaviours/support            |
-      | test/factories                     |
-      | test/integrations                  |
-      | test/integrations/step_definitions |
-      | test/integrations/support          |
-
+      | path                                   |
+      | config                                 |
+      | dirt/contexts                          |
+      | dirt/contexts/roles                    |
+      | dirt/models                            |
+      | dirt/tests/behaviours                  |
+      | dirt/tests/behaviours/support          |
+      | dirt/tests/behaviours/step_definitions |
+      | dirt/tests/isolations                  |
+      | faces                                  |
   Examples:
     | parent_path           | project_directory | project_name  |
     |                       | test_project      | Test Project  |

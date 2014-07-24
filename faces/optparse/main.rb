@@ -1,4 +1,4 @@
-require './app/samling'
+require './dirt/samling'
 
 require 'optparse'
 require 'yaml'

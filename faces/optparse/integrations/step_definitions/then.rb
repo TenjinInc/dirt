@@ -4,6 +4,9 @@ end
 
 Then(/^ls should show the following files in "(.*?)":$/) do |location, table|
   Dir.chdir(location)
+
+  # ideally use `tree -ifd` instead
+
   paths = Dir['**/*']
 
   table.hashes.collect do |h|

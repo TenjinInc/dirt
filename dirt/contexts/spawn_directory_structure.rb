@@ -9,15 +9,10 @@ module Samling
 
       FileUtils.mkdir_p(project_root)
 
-      paths = ['app/contexts/roles',
-               'app/faces',
-               'app/models',
-               'config',
-               'test/behaviours/step_definitions',
-               'test/behaviours/support',
-               'test/factories/',
-               'test/integrations/step_definitions',
-               'test/integrations/support']
+      paths = ['config',
+               'dirt/contexts',
+               # 'dirt/contexts',
+               '']
 
       paths.each do |path|
         FileUtils.mkdir_p(File.expand_path(path, project_root))

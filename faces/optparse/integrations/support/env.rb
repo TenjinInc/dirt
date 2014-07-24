@@ -1,4 +1,4 @@
-require './app/faces/optparse/controllers/main.rb'
+require './faces/optparse/main.rb'
 
 require 'fakefs/safe'
 require 'aruba-doubles'
