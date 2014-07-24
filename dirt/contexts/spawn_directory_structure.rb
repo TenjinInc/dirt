@@ -11,8 +11,13 @@ module Samling
 
       paths = ['config',
                'dirt/contexts',
-               # 'dirt/contexts',
-               '']
+               'dirt/contexts/roles',
+               'dirt/models',
+               'dirt/tests/behaviours',
+               'dirt/tests/behaviours/support',
+               'dirt/tests/behaviours/step_definitions',
+               'dirt/tests/isolations',
+               'faces']
 
       paths.each do |path|
         FileUtils.mkdir_p(File.expand_path(path, project_root))
