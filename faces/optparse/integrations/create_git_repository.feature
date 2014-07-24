@@ -30,9 +30,9 @@ Feature: it should optionally create a git repository with the project in it
 
   Scenario Outline: it should not run git when the --no-git flag is given
     When I run Samling with:
-      | flag     | value               |
-      | project  | <project_directory> |
-      | --no-git |                     |
+      | flag    | value               |
+      | project | <project_directory> |
+      | no-git  |                     |
     Then it should say "Skipping git steps."
     And there should not be a git repository in "<project_directory>"
     And there should not be a central git repository in "/var/git/test/<project_directory>.git"

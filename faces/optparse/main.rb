@@ -58,6 +58,11 @@ module Samling
                   'The username to be used to log into the host device. Defaults to the name of the user running this script.') do |name|
             options[:vcs_user] = name
           end
+
+          opts.on('-n', '--no-git',
+                  'Skip the git steps.') do |use_git|
+            options[:use_vcs] = use_git
+          end
           # opts.on('--version',
           #         'Print program version and exit.') do |version|
           #   options[:version] = version
@@ -88,6 +93,7 @@ module Samling
       def select_and_run_context(options)
         project_directory = options[:project_name].gsub(' ', '').underscore
 
+        puts 'Skipping git steps.'
         puts `git init --bare #{project_directory}.git`
 
         puts "Time to grow, little #{options[:project_name]}..."
