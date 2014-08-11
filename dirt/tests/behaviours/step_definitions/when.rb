@@ -1,5 +1,5 @@
-When(/^I create a new project "(.*?)" at "(.*?)"$/) do |project_name, project_path|
-  Samling::SpawnDirectoryStructure.run(project_name, project_path)
+When(/^I create a new project "(.*?)" at "(.*?)"$/) do |project_name, parent_path|
+  Samling::SpawnDirectoryStructure.run(parent_path, project_name)
 end
 
 When(/^it creates project files in "(.*?)"$/) do |arg1|

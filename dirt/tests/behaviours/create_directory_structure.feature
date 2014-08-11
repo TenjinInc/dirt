@@ -16,11 +16,11 @@ Feature: it should create the expected directory tree
       | dirt/tests/isolations                  |
       | faces                                  |
   Examples:
-    | parent_path           | project_directory |
-    |                       | my_project        |
-    | a_path/to/the project | my_project        |
-    |                       | my_other_project  |
-    | some/other/path       | my_other_project  |
+    | parent_path            | project_directory |
+    |                        | my_project        |
+    | /a_path/to/the project | my_project        |
+    |                        | my_other_project  |
+    | /some/other/path       | my_other_project  |
 
     #  Scenario Outline: the project root directory exists
 #    When I create a new project "<project_name>"
