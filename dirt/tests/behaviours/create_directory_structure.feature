@@ -1,24 +1,26 @@
 Feature: it should create the expected directory tree
 
   Scenario Outline: the project root directory does not exist
-    When I create a new project "<project_name>" at "<parent_path>"
+    When I create a new project "<project_directory>" at "<parent_path>"
     Then there should be exactly the following directories in "<parent_path>/<project_directory>":
       | path                                   |
       | config                                 |
+      | dirt                                   |
       | dirt/contexts                          |
       | dirt/contexts/roles                    |
       | dirt/models                            |
+      | dirt/tests                             |
       | dirt/tests/behaviours                  |
       | dirt/tests/behaviours/support          |
       | dirt/tests/behaviours/step_definitions |
       | dirt/tests/isolations                  |
       | faces                                  |
   Examples:
-    | parent_path           | project_directory | project_name     |
-    |                       | my_project        | My Project       |
-    | a_path/to/the project | my_project        | My Project       |
-    |                       | my_other_project  | My Other Project |
-    | some/other/path       | my_other_project  | My Other Project |
+    | parent_path           | project_directory |
+    |                       | my_project        |
+    | a_path/to/the project | my_project        |
+    |                       | my_other_project  |
+    | some/other/path       | my_other_project  |
 
     #  Scenario Outline: the project root directory exists
 #    When I create a new project "<project_name>"

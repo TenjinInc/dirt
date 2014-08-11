@@ -1,3 +1,5 @@
+require './dirt/samling'
+
 require 'fakefs/safe'
 require 'aruba-doubles'
 

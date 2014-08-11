@@ -17,8 +17,10 @@ Then(/^it should run git add on exactly the following paths in "(.*?)":$/) do |b
 end
 
 Then(/^there should be exactly the following files|directories in "(.*?)":$/) do |location, table|
-  # table is a Cucumber::Ast::Table
-  pending # express the regexp above with the code you wish you had
+  created_files = Dir.glob(location + '/**/*')
+  expected_files = table.hashes.collect { |h| (Pathname.new(location) + h[:path]).to_s }
+
+  created_files.should =~ expected_files
 end
 
 Then(/^it there should be \.gitkeep files in exactly the following directories$/) do |table|
