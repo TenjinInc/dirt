@@ -94,7 +94,7 @@ module Samling
         project_directory = options[:project_name].gsub(' ', '').underscore
 
         puts 'Skipping git steps.'
-        puts `git init --bare #{project_directory}.git`
+        CreateVcsRepository.run(project_directory)
 
         puts "Time to grow, little #{options[:project_name]}..."
         SpawnDirectoryStructure.run(options[:project_location], project_directory)

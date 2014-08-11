@@ -17,11 +17,11 @@ Feature: it should optionally create a git repository with the project in it
     | my_project                |
     | /var/git/my_other_project |
 
-  Scenario Outline:it should pull the repository down
+  Scenario Outline: it should pull the repository down
     When I run Samling with:
       | flag    | value               |
       | project | <project_directory> |
-    Then it should say "Cloning into '/var/git/test/<project_directory>.git'..."
+    Then it should say "Cloning into '/home/derp/test/<project_directory>.git'..."
     And there should be a git repository in "<project_directory>"
   Examples:
     | project_directory |
