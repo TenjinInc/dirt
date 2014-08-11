@@ -1,5 +1,5 @@
-When(/^I create a new project "(.*?)" at "(.*?)"$/) do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+When(/^I create a new project "(.*?)" at "(.*?)"$/) do |project_name, project_path|
+  SpawnDirectoryStructure.run(project_name, project_path)
 end
 
 When(/^it creates project files in "(.*?)"$/) do |arg1|
