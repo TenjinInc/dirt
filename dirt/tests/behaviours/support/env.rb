@@ -1,5 +1,3 @@
-require './faces/optparse/main.rb'
-
 require 'fakefs/safe'
 require 'aruba-doubles'
 

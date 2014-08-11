@@ -26,7 +26,7 @@ Feature: it should create a new project's directory structure
     | some/other/path       | my_other_project  | My Other Project |
 
   Scenario: it should require a project name
-    When I run Samling
+    When I run Samling with no args
     Then it should say "Usage: samling [options] arguments"
 
   # error cases, etc.

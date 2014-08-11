@@ -2,16 +2,17 @@ Feature: it should create the expected directory tree
 
   Scenario Outline: the project root directory does not exist
     When I create a new project "<project_name>" at "<parent_path>"
-    Then there should be the following files:
-      | path                                                          |
-      | <parent_path>/<project_directory>/app/contexts/.gitkeep       |
-      | <parent_path>/<project_directory>/app/contexts/roles/.gitkeep |
-      | <parent_path>/<project_directory>/app/faces/.gitkeep          |
-      | <parent_path>/<project_directory>/app/models/.gitkeep         |
-      | <parent_path>/<project_directory>/config/.gitkeep             |
-      | <parent_path>/<project_directory>/test/behaviours/.gitkeep    |
-      | <parent_path>/<project_directory>/test/factories/.gitkeep     |
-      | <parent_path>/<project_directory>/test/integrations/.gitkeep  |
+    Then there should be exactly the following directories in "<parent_path>/<project_directory>":
+      | path                                   |
+      | config                                 |
+      | dirt/contexts                          |
+      | dirt/contexts/roles                    |
+      | dirt/models                            |
+      | dirt/tests/behaviours                  |
+      | dirt/tests/behaviours/support          |
+      | dirt/tests/behaviours/step_definitions |
+      | dirt/tests/isolations                  |
+      | faces                                  |
   Examples:
     | parent_path           | project_directory | project_name     |
     |                       | my_project        | My Project       |

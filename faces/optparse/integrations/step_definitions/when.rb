@@ -12,6 +12,6 @@ When(/^I run Samling with:$/) do |table|
   Samling::Cli::Main.new(input, out, err).execute!(options)
 end
 
-When(/^I run Samling$/) do
+When(/^I run Samling with no args$/) do
   expect { step('I run Samling with:', table([%w{flag value}])) }.to raise_error(SystemExit)
 end
