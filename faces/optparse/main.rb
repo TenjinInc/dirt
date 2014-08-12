@@ -46,7 +46,7 @@ module Samling
 
           opts.on('-l', '--location PATH',
                   'The parent directory of the new project on the host machine (see --host).') do |path|
-            options[:project_location] = path
+            options[:project_root] = path
           end
 
           opts.on('-h', '--host ADDRESS',
@@ -97,8 +97,8 @@ module Samling
         CreateVcsRepository.run(project_directory)
 
         puts "Time to grow, little #{options[:project_name]}..."
-        SpawnDirectoryStructure.run(options[:project_location], project_directory)
-        puts "Created project structure in #{options[:project_location]}/#{project_directory}."
+        SpawnDirectoryStructure.run(options[:project_root], project_directory)
+        puts "Created project structure in #{options[:project_root]}/#{project_directory}."
       end
     end
   end

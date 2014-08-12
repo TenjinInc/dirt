@@ -28,8 +28,17 @@ Then(/^it there should be \.gitkeep files in exactly the following directories$/
   pending # express the regexp above with the code you wish you had
 end
 
-Then(/^there should be file "(.*?)" from template "(.*?)"$/) do |expected_file, template_name|
-  template_path = "templates/#{template_name}"
+Then(/^there should be files for "(.*?)" from templates:$/) do |project_name, table|
+  created_files = table.hashes.collect do |h|
+    File.exists?(h[:path]).should be_true
+    File.read(h[:path])
+  end
 
-  pending # express the regexp above with the code you wish you had
+  FakeFS.deactivate!
+  templates = table.hashes.collect do |h|
+    File.read("./config/templates/#{h[:template]}").gsub('<project_name>', project_name)
+  end
+  FakeFS.activate!
+
+  created_files.should =~ templates
 end

@@ -16,15 +16,34 @@ Before do
   double_cmd('git commit')
   double_cmd('git push')
 
-  config_path = './config/config.yml'
-  config = File.read(config_path)
+  FakeFS::FileSystem.clear
+
+  Dir['./config/**/*'].each do |file|
+    FakeFS.deactivate!
+
+    if File.directory? file
+      FakeFS.activate!
+      FileUtils.mkdir(file)
+    else
+      content = File.read(file)
+      FakeFS.activate!
+      FileUtils.mkdir_p(File.dirname(file))
+      FileUtils.touch(file)
+      File.open(file, 'w+') { |file| file.write(content) }
+    end
+  end
 
   FakeFS.activate!
 
-  FileUtils.mkdir(File.dirname config_path)
-  FileUtils.touch(config_path)
-
-  File.open(config_path, 'w') { |file| file.write(config) }
+  # config_path = './config/config.yml'
+  # config = File.read(config_path)
+  #
+  # FakeFS.activate!
+  #
+  # FileUtils.mkdir(File.dirname(config_path))
+  # FileUtils.touch(config_path)
+  #
+  # File.open(config_path, 'w') { |file| file.write(config) }
 end
 
 World(ArubaDoubles)

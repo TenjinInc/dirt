@@ -5,10 +5,12 @@ Feature: create files
       | path                                          |
       | <project_path>/dirt/tests/behaviours/support/ |
     When it creates project files in "<project_path>"
-    Then there should be file "<project_path>/dirt/<project_name>.rb" from template "template.project_name.rb"
-    And there should be file "<project_path>/Gemfile" from template "template.gemfile.rb"
-    And there should be file "<project_path>/.gitignore" from template "template.gitignore"
-    And there should be file "<project_path>/dirt/tests/behaviours/support/env.rb" from template "template.env.rb"
+    Then there should be files for "<project_name>" from templates:
+      | path                                                | template                 |
+      | <project_path>/dirt/<project_name>.rb               | template.project_name.rb |
+      | <project_path>/Gemfile                              | template.Gemfile         |
+      | <project_path>/.gitignore                           | template.gitignore       |
+      | <project_path>/dirt/tests/behaviours/support/env.rb | template.env.rb          |
   Examples:
     | project_name    | project_path              |
     | my_project      | my_project                |
@@ -16,10 +18,12 @@ Feature: create files
 
   Scenario Outline: parent directories do not exist
     When it creates project files in "<project_path>"
-    Then there should be file "<project_path>/dirt/<project_name>.rb" from template "template.project_name.rb"
-    And there should be file "<project_path>/Gemfile" from template "template.gemfile.rb"
-    And there should be file "<project_path>/.gitignore" from template "template.gitignore"
-    And there should be file "<project_path>/dirt/tests/behaviours/support/env.rb" from template "template.env.rb"
+    Then there should be files for "<project_name>" from templates:
+      | path                                                | template                 |
+      | <project_path>/dirt/<project_name>.rb               | template.project_name.rb |
+      | <project_path>/Gemfile                              | template.Gemfile         |
+      | <project_path>/.gitignore                           | template.gitignore       |
+      | <project_path>/dirt/tests/behaviours/support/env.rb | template.env.rb          |
   Examples:
     | project_name    | project_path              |
     | my_project      | my_project                |

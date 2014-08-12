@@ -2,8 +2,8 @@ When(/^I create a new project "(.*?)" at "(.*?)"$/) do |project_name, parent_pat
   Samling::SpawnDirectoryStructure.run(parent_path, project_name)
 end
 
-When(/^it creates project files in "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+When(/^it creates project files in "(.*?)"$/) do |project_root|
+  Samling::PopulateDefaultFiles.run(project_root)
 end
 
 When(/^it creates a local VCS bare under bare_path: "(.*?)", and project_path: "(.*?)"$/) do |bare_path, project_path|

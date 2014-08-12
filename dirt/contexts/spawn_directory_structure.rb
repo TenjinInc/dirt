@@ -1,11 +1,11 @@
 module Samling
   class SpawnDirectoryStructure < Dirt::Context
     def initialize(project_location, project_directory)
-      @project_location, @project_directory = project_location, project_directory
+      @project_root, @project_directory = project_location, project_directory
     end
 
     def call
-      project_root = Pathname.new(@project_location || '') + @project_directory
+      project_root = Pathname.new(@project_root || '') + @project_directory
 
       FileUtils.mkdir_p(project_root)
 

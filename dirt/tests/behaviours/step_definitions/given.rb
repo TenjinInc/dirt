@@ -1,8 +1,9 @@
 Given(/^a step that is unimplemented$/) do
-  pending # express the regexp above with the code you wish you had
+  pending 'Finish defining this test!'
 end
 
 Given(/^the following directories exist:$/) do |table|
-  # table is a Cucumber::Ast::Table
-  pending # express the regexp above with the code you wish you had
+  table.hashes.each do |h|
+    FileUtils.mkdir_p(h[:path])
+  end
 end
