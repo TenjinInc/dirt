@@ -15,8 +15,8 @@ Feature: create VCS repository
 
 
   Scenario Outline: remote host
-    When it creates a remote bare VCS under user: "<user>\@<host>", password: "<password>", bare_path: "<given_bare_path>", and project_path: "<working_project_path>"
-    Then it should run "ssh thor "git init --bare <created_bare_path>""
+    When it creates a remote bare VCS under host: "<host>", user: "<user>", password: "<password>", bare_path: "<given_bare_path>", and project_path: "<working_project_path>"
+    Then it should run "ssh <host> "git init --bare <created_bare_path>""
     And it should run "git clone <created_bare_path> <working_project_path>"
   Examples:
     | host     | user  | password | given_bare_path               | created_bare_path             | working_project_path |
