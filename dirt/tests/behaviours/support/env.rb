@@ -18,6 +18,7 @@ Before do
 
   FakeFS::FileSystem.clear
 
+  # clone all config files into the fake file system
   Dir['./config/**/*'].each do |file|
     FakeFS.deactivate!
 
@@ -32,25 +33,10 @@ Before do
       File.open(file, 'w+') { |file| file.write(content) }
     end
   end
-
   FakeFS.activate!
-
-  # config_path = './config/config.yml'
-  # config = File.read(config_path)
-  #
-  # FakeFS.activate!
-  #
-  # FileUtils.mkdir(File.dirname(config_path))
-  # FileUtils.touch(config_path)
-  #
-  # File.open(config_path, 'w') { |file| file.write(config) }
 end
 
 World(ArubaDoubles)
-
-# World do
-#   # `ssh thor "rm -rf /var/git/test/"`
-# end
 
 After do
   FakeFS::FileSystem.clear

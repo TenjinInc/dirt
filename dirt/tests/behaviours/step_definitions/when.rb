@@ -10,10 +10,10 @@ When(/^it creates a local VCS bare under bare_path: "(.*?)", and project_path: "
   step "it creates a remote bare VCS under user: \"\", password: \"\", bare_path: \"#{bare_path}\", and project_path: \"#{project_path}\""
 end
 
-When(/^it creates a remote bare VCS under user: "(.*?)", password: "(.*?)", bare_path: "(.*?)", and project_path: "(.*?)"$/) do |arg1, arg2, arg3, arg4|
-  pending # express the regexp above with the code you wish you had
+When(/^it creates a remote bare VCS under user: "(.*?)", password: "(.*?)", bare_path: "(.*?)", and project_path: "(.*?)"$/) do |user, password, bare_path, project_path|
+  Samling::CreateGitRepository.run(project_path, bare_path, user, password)
 end
 
 When(/^it commits all files and directories$/) do
-  pending # express the regexp above with the code you wish you had
+  Samling::CommitGitRepository.run(project_path)
 end

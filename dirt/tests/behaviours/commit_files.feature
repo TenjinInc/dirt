@@ -2,7 +2,7 @@ Feature: it should commit all files and directories to VCS
 
   Scenario Outline: committing the default structure
     When it commits all files and directories
-    Then it there should be .gitkeep files in exactly the following directories
+    Then it there should be .gitkeep files in exactly the following directories of "<parent_path>/<project_directory>"
       | path                                   |
       | config                                 |
       | dirt/contexts                          |
