@@ -4,6 +4,16 @@ Then(/^it should run "(.*?)"$/) do |command|
   FakeFS.activate!
 end
 
+Then(/^it should run exactly:$/) do |table|
+  commands = table.hashes.collect do |h|
+    h[:command].shellsplit
+  end
+
+  FakeFS.deactivate!
+  history.to_a.should == commands
+  FakeFS.activate!
+end
+
 Then(/^it should run git add on exactly the following paths in "(.*?)":$/) do |base_path, table|
   commands = table.hashes.collect do |h|
     path = Pathname.new(base_path) + Pathname.new(h[:path])

@@ -3,6 +3,7 @@ module Samling
     def initialize(project_path, bare_path, host, user, password)
       @project_path = Pathname.new(project_path)
       @bare_path = Pathname.new(bare_path)
+      @host = host
 
       @bare_path = Pathname.new(@bare_path.to_s + '.git') if @bare_path.extname.blank?
 
@@ -11,8 +12,13 @@ module Samling
     end
 
     def call
-      `git init --bare #{@bare_path}`
-      `git clone #{@bare_path} #{@project_path}`
+      if @host.blank?
+        `git init --bare #{@bare_path}`
+        `git clone #{@bare_path} #{@project_path}`
+      else
+        `ssh #{@host} "git init --bare #{@bare_path}"`
+        `git clone #{@bare_path} #{@project_path}`
+      end
     end
   end
 end
