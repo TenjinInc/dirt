@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'dirt', path: '../dirt/'
+gem 'dirt', '~> 2.2.0', git: 'git://github.com/TenjinInc/dirt.git'
 gem 'activesupport'
 
 group :development do

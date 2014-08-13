@@ -6,11 +6,11 @@ require 'aruba-doubles'
 Before do
   ArubaDoubles::Double.setup
 
-  double_cmd('git init --bare my_project.git', puts: 'Initialized empty Git repository in my_project.git/')
-  double_cmd('git init --bare /var/git/my_other_project.git', puts: 'Initialized empty Git repository in /var/git/my_other_project.git/')
+  double_cmd('git init --bare some/path.git', puts: 'Initialized empty Git repository in some/path.git/')
+  double_cmd('git init --bare different/barish/location.git', puts: 'Initialized empty Git repository in different/barish/location.git/')
 
-  double_cmd('git clone thor:/var/git/my_project.git', 'Cloning into \'/home/derp/test/my_project.git\'...')
-  double_cmd('git clone thor:/var/git/my_other_project.git', 'Cloning into \'/home/derp/test/my_other_project.git\'...')
+  double_cmd('git clone some/path.git', 'Cloning into \'/home/derp/test/my_project.git\'...')
+  double_cmd('git clone different/barish/location.git', 'Cloning into \'/home/derp/test/my_other_project.git\'...')
 
   double_cmd('git add')
   double_cmd('git commit')

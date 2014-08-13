@@ -1,5 +1,6 @@
-PATH
-  remote: ../dirt/
+GIT
+  remote: git://github.com/TenjinInc/dirt.git
+  revision: f0cba376b42627de438b787e5a28715b32a790ce
   specs:
     dirt (2.2.0)
       activesupport (>= 3.2)
@@ -81,7 +82,7 @@ DEPENDENCIES
   aruba-doubles
   capybara
   cucumber
-  dirt!
+  dirt (~> 2.2.0)!
   factory_girl (~> 4.0)
   fakefs
   launchy
