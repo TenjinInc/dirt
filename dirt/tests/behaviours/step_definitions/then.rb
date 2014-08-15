@@ -14,16 +14,18 @@ Then(/^it should run exactly:$/) do |table|
   FakeFS.activate!
 end
 
-Then(/^it should run git add on exactly the following paths in "(.*?)":$/) do |base_path, table|
-  commands = table.hashes.collect do |h|
+Then(/^it should run git add on exactly the following files in "(.*?)":$/) do |base_path, table|
+  expected_commands = table.hashes.collect do |h|
     path = Pathname.new(base_path) + Pathname.new(h[:path])
 
-    command = "git add #{path}\n"
+    "git add \"#{path}\"".shellsplit
   end
 
   FakeFS.deactivate!
-  history.should == commands.shellsplit
+  run_commands = history.select { |c| c[1] == 'add' }
   FakeFS.activate!
+
+  expected_commands =~ run_commands
 end
 
 Then(/^there should be exactly the following files|directories in "(.*?)":$/) do |location, table|
@@ -35,7 +37,9 @@ end
 
 Then(/^it there should be \.gitkeep files in exactly the following directories of "(.*?)"$/) do |project_directory, table|
   table.hashes.each do |h|
-    File.exist?((Pathname.new(project_directory) + h[:path]) + '.gitkeep').should be_true
+    expected_file = (Pathname.new(project_directory) + h[:path]) + '.gitkeep'
+    expected_file.should exist
+    expected_file.file?.should be_true
   end
 end
 

@@ -1,7 +1,18 @@
 require './dirt/samling'
+require 'rspec/matchers'
 
 require 'fakefs/safe'
 require 'aruba-doubles'
+
+RSpec::Matchers.define :exist do
+  match do |actual_path|
+    File.exist?(actual_path) == true
+  end
+
+  failure_message_for_should do |actual|
+    "expected '#{actual.to_s}' to exist"
+  end
+end
 
 Before do
   ArubaDoubles::Double.setup
@@ -17,8 +28,33 @@ Before do
   double_cmd('git clone some/path.git', 'Cloning into \'/home/derp/test/my_project.git\'...')
   double_cmd('git clone different/barish/location.git', 'Cloning into \'/home/derp/test/my_other_project.git\'...')
 
-  double_cmd('git add')
-  double_cmd('git commit')
+  double_cmd('git add "/some/other/path/my_other_project/Gemfile"')
+  double_cmd('git add "/some/other/path/my_other_project/.gitignore"')
+  double_cmd('git add "/some/other/path/my_other_project/dirt/tests/behaviours/support/env.rb"')
+  double_cmd('git add "/some/other/path/my_other_project/config/.gitkeep"')
+  double_cmd('git add "/some/other/path/my_other_project/dirt/contexts/.gitkeep"')
+  double_cmd('git add "/some/other/path/my_other_project/dirt/contexts/roles/.gitkeep"')
+  double_cmd('git add "/some/other/path/my_other_project/dirt/models/.gitkeep"')
+  double_cmd('git add "/some/other/path/my_other_project/dirt/tests/behaviours/.gitkeep"')
+  double_cmd('git add "/some/other/path/my_other_project/dirt/tests/behaviours/support/.gitkeep"')
+  double_cmd('git add "/some/other/path/my_other_project/dirt/tests/behaviours/step_definitions/.gitkeep"')
+  double_cmd('git add "/some/other/path/my_other_project/dirt/tests/isolations/.gitkeep"')
+  double_cmd('git add "/some/other/path/my_other_project/faces/.gitkeep"')
+
+  double_cmd('git add "/a_path/to/the project/my_project/Gemfile"')
+  double_cmd('git add "/a_path/to/the project/my_project/.gitignore"')
+  double_cmd('git add "/a_path/to/the project/my_project/dirt/tests/behaviours/support/env.rb"')
+  double_cmd('git add "/a_path/to/the project/my_project/config/.gitkeep"')
+  double_cmd('git add "/a_path/to/the project/my_project/dirt/contexts/.gitkeep"')
+  double_cmd('git add "/a_path/to/the project/my_project/dirt/contexts/roles/.gitkeep"')
+  double_cmd('git add "/a_path/to/the project/my_project/dirt/models/.gitkeep"')
+  double_cmd('git add "/a_path/to/the project/my_project/dirt/tests/behaviours/.gitkeep"')
+  double_cmd('git add "/a_path/to/the project/my_project/dirt/tests/behaviours/support/.gitkeep"')
+  double_cmd('git add "/a_path/to/the project/my_project/dirt/tests/behaviours/step_definitions/.gitkeep"')
+  double_cmd('git add "/a_path/to/the project/my_project/dirt/tests/isolations/.gitkeep"')
+  double_cmd('git add "/a_path/to/the project/my_project/faces/.gitkeep"')
+
+  double_cmd('git commit -am "Dirt project init"')
   double_cmd('git push')
 
   FakeFS::FileSystem.clear

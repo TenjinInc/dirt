@@ -14,6 +14,6 @@ When(/^it creates a bare VCS under host: "(.*?)", user: "(.*?)", bare_path: "(.*
   Samling::CreateGitRepository.run(project_path, bare_path, host, user)
 end
 
-When(/^it commits all files and directories$/) do
-  Samling::CommitGitRepository.run(project_path)
+When(/^it commits all files and directories in "(.*?)"$/) do |path|
+  Samling::CommitGitRepository.run(path)
 end
