@@ -87,3 +87,13 @@ After do
   history.clear
 end
 
+def recent_history(n=1)
+  unless @commands
+    FakeFS.deactivate!
+    @commands = history.to_a
+    FakeFS.activate!
+  end
+
+  @commands.shift(n)
+end
+

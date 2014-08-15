@@ -1,7 +1,5 @@
 Then(/^it should run "(.*?)"$/) do |command|
-  FakeFS.deactivate!
-  history.should include command.shellsplit
-  FakeFS.activate!
+  recent_history.should include command.shellsplit
 end
 
 Then(/^it should run exactly:$/) do |table|
@@ -9,9 +7,7 @@ Then(/^it should run exactly:$/) do |table|
     h[:command].shellsplit
   end
 
-  FakeFS.deactivate!
-  history.to_a.should == commands
-  FakeFS.activate!
+  recent_history(commands.size).should == commands
 end
 
 Then(/^it should run git add on exactly the following files in "(.*?)":$/) do |base_path, table|
@@ -21,11 +17,7 @@ Then(/^it should run git add on exactly the following files in "(.*?)":$/) do |b
     "git add \"#{path}\"".shellsplit
   end
 
-  FakeFS.deactivate!
-  run_commands = history.select { |c| c[1] == 'add' }
-  FakeFS.activate!
-
-  expected_commands =~ run_commands
+  expected_commands =~ recent_history(expected_commands.size)
 end
 
 Then(/^there should be exactly the following files|directories in "(.*?)":$/) do |location, table|
