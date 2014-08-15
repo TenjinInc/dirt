@@ -26,7 +26,7 @@ module Samling
 
       `git commit -am "Dirt project init"`
 
-      `git push`
+      `git push origin master`
     end
   end
 end

@@ -24,7 +24,7 @@ Feature: it should commit all files and directories to VCS
       | dirt/tests/isolations/.gitkeep                  |
       | faces/.gitkeep                                  |
     And it should run "git commit -am "Dirt project init""
-    And it should run "git push"
+    And it should run "git push origin master"
   Examples:
     | project_directory                | project_name     |
     | a_path/to/the project/my_project | my_project       |
