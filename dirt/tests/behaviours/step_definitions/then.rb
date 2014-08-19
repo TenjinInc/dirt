@@ -37,7 +37,7 @@ end
 
 Then(/^there should be files for "(.*?)" from templates:$/) do |project_name, table|
   created_files = table.hashes.collect do |h|
-    File.exists?(h[:path]).should be_true
+    h[:path].should exist
     File.read(h[:path])
   end
 
