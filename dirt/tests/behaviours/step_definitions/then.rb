@@ -20,8 +20,8 @@ Then(/^it should run git add on exactly the following files in "(.*?)":$/) do |b
   expected_commands =~ recent_history(expected_commands.size)
 end
 
-Then(/^there should be exactly the following files|directories in "(.*?)":$/) do |location, table|
-  created_files = Dir.glob(location + '/**/*')
+Then(/^there should be exactly the following (files|directories) in "(.*?)":$/) do |type, location, table|
+  created_files = Dir.glob(location + '/**/*').select { |f| type == 'files' ? File.file?(f) : File.directory?(f) }
   expected_files = table.hashes.collect { |h| (Pathname.new(location) + h[:path]).to_s }
 
   created_files.should =~ expected_files
@@ -43,7 +43,11 @@ Then(/^there should be files for "(.*?)" from templates:$/) do |project_name, ta
 
   FakeFS.deactivate!
   templates = table.hashes.collect do |h|
-    File.read("./config/templates/#{h[:template]}").gsub('<project_name>', project_name)
+    if h[:template].blank?
+      ''
+    else
+      File.read("./config/templates/#{h[:template]}").gsub('<project_name>', project_name)
+    end
   end
   FakeFS.activate!
 

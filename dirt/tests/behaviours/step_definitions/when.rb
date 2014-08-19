@@ -17,3 +17,9 @@ end
 When(/^it commits all files and directories in "(.*?)"$/) do |path|
   Samling::CommitGitRepository.run(path)
 end
+
+# faces
+
+When(/^I create a new basic face "(.*?)" at "(.*?)"$/) do |face_name, root_path|
+  Samling::CreateBasicFace.run(root_path, face_name)
+end
