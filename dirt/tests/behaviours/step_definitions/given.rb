@@ -9,7 +9,5 @@ Given(/^the following directories exist:$/) do |table|
 end
 
 Given(/^the default structure exists in "(.*?)"$/) do |project_dir|
-  project_dir = Pathname.new(project_dir)
-  Samling::SpawnDirectoryStructure.run(project_dir.dirname, project_dir.basename)
-  Samling::PopulateDefaultFiles.run(project_dir)
+  Samling::CreateDefaultStructure.run(project_dir)
 end

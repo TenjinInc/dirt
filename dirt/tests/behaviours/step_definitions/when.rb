@@ -1,9 +1,5 @@
-When(/^I create a new project "(.*?)" at "(.*?)"$/) do |project_name, parent_path|
-  Samling::SpawnDirectoryStructure.run(parent_path, project_name)
-end
-
-When(/^it creates project files in "(.*?)"$/) do |project_root|
-  Samling::PopulateDefaultFiles.run(project_root)
+When(/^I create a new project in "(.*?)"$/) do |project_path|
+  Samling::CreateDefaultStructure.run(project_path)
 end
 
 When(/^it creates a VCS bare under bare_path: "(.*?)", and project_path: "(.*?)"$/) do |bare_path, project_path|
