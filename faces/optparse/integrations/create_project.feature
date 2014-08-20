@@ -1,4 +1,21 @@
-Feature: it should create a new project's directory structure
+Feature: it should create new project with its default contents and an accompanying git repo
+  # Usage: dirt project [--project-name NAME] [--face MEDIUM[/ENGINE]]
+
+  # Usage: dirt project NAME
+  # Usage: dirt face MEDIUM[/ENGINE]
+  # Usage: dirt context NAME
+  # Usage: dirt model NAME
+  # Usage: dirt role NAME
+
+
+  # Usage: dirt generate [--project NAME] [--face MEDIUM[/ENGINE]] [--context NAME] [--model NAME] [--role NAME]
+
+
+  # Some examples:
+  # dirt generate -p "My New Project"
+  # dirt generate -p my_project --face web/sinatra
+  # dirt generate --face web/sinatra my_project
+
 
   Scenario Outline: it should create the project structure
     When I run Samling with:
