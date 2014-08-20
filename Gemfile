@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'dirt', '~> 2.2.0', git: 'git://github.com/TenjinInc/dirt.git'
+gem 'dirt-core', '~> 2.2.1', git: 'git://github.com/TenjinInc/dirt-core.git'
 gem 'activesupport'
 
 group :development do
@@ -8,7 +8,7 @@ group :development do
 end
 
 group :test do
-  gem 'rspec'
+  gem 'rspec', '~> 2.14.1'
   gem 'cucumber'
   gem 'capybara'
   gem 'launchy'

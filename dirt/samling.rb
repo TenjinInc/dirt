@@ -1,5 +1,5 @@
 require 'pathname'
-require 'dirt'
+require 'dirt/core'
 require 'active_support'
 
 app_dir = Pathname.new(__FILE__).dirname
