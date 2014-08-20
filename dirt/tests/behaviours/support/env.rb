@@ -1,4 +1,4 @@
-require './dirt/samling'
+require './dirt/dirt'
 require 'rspec/matchers'
 
 require 'fakefs/safe'

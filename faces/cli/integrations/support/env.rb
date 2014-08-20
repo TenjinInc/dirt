@@ -1,3 +1,3 @@
-require './faces/optparse/main.rb'
+require './faces/cli/optparse/main.rb'
 
 require './dirt/tests/behaviours/support/env'

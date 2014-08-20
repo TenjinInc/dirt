@@ -21,7 +21,7 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-require './dirt/samling'
+require './dirt/dirt'
 
 require 'optparse'
 require 'yaml'
