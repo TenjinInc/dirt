@@ -28,11 +28,14 @@ Feature: it should create the expected directory tree
       | <project_path>/dirt/tests/behaviours/support/ |
     When I create a new project in "<project_path>"
     Then there should be files for "<project_name>" from templates:
-      | path                                                | template                 |
-      | <project_path>/dirt/<project_name>.rb               | template.project_name.rb |
-      | <project_path>/Gemfile                              | template.Gemfile         |
-      | <project_path>/.gitignore                           | template.gitignore       |
-      | <project_path>/dirt/tests/behaviours/support/env.rb | template.env.rb          |
+      | path                                                           | template                 |
+      | <project_path>/dirt/<project_name>.rb                          | template.project_name.rb |
+      | <project_path>/Gemfile                                         | template.Gemfile         |
+      | <project_path>/.gitignore                                      | template.gitignore       |
+      | <project_path>/dirt/tests/behaviours/support/env.rb            | template.env.rb          |
+      | <project_path>/dirt/tests/behaviours/step_definitions/given.rb |                          |
+      | <project_path>/dirt/tests/behaviours/step_definitions/when.rb  |                          |
+      | <project_path>/dirt/tests/behaviours/step_definitions/then.rb  |                          |
   Examples:
     | project_path              | project_name    |
     | my_project                | my_project      |

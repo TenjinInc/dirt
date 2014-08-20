@@ -4,16 +4,6 @@ require 'rspec/matchers'
 require 'fakefs/safe'
 require 'aruba-doubles'
 
-RSpec::Matchers.define :exist do
-  match do |actual_path|
-    File.exist?(actual_path) == true
-  end
-
-  failure_message_for_should do |actual|
-    "expected '#{actual.to_s}' to exist"
-  end
-end
-
 Before do
   ArubaDoubles::Double.setup
 
@@ -87,13 +77,4 @@ After do
   history.clear
 end
 
-def recent_history(n=1)
-  unless @commands
-    FakeFS.deactivate!
-    @commands = history.to_a
-    FakeFS.activate!
-  end
-
-  @commands.shift(n)
-end
 

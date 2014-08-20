@@ -2,24 +2,48 @@ Feature: it should create new project with its default contents and an accompany
 
   # === Happy cases ====
   Scenario Outline: dirt generate project --name NAME
-    Given this feature is unimplemented
+    Given I am in "<parent_path>"
+    When I generate a project with:
+      | flag | value        |
+      | name | <given name> |
+    Then it should say "Time to grow, little <displayed name>..."
+    And it should say "Created project structure in <parent_path>/<project_directory>."
+    And ls should show the following files in "<parent_path>/<project_directory>":
+      | path                                   |
+      | config                                 |
+      | dirt/contexts                          |
+      | dirt/contexts/roles                    |
+      | dirt/models                            |
+      | dirt/tests/behaviours                  |
+      | dirt/tests/behaviours/support          |
+      | dirt/tests/behaviours/step_definitions |
+      | dirt/tests/isolations                  |
+      | faces                                  |
   Examples:
-    | nope |
-    |      |
-
-  Scenario Outline: dirt generate project --name NAME --face MEDIUM/ENGINE
-    Given this feature is unimplemented
-  Examples:
-    | nope |
-    |      |
+    | given name       | displayed name   | parent_path            | project_directory |
+    | my project       | My Project       | /a_path/to/the project | my_project        |
+    | my other project | My Other Project | /some/other/path       | my_other_project  |
 
   Scenario Outline: dirt generate project --name NAME --location PATH
+    Given I am in "/"
+    When I generate a project with:
+      | flag     | value      |
+      | name     | <name>     |
+      | location | <location> |
+  Examples:
+    | name             | location               |
+    | my_project       | /a_path/to/the project |
+    | my_other_project | /some/other/path/      |
+
+  #  dirt generate project --name NAME --face MEDIUM/ENGINE
+  Scenario Outline: Generate project with face
     Given this feature is unimplemented
   Examples:
     | nope |
     |      |
 
-  Scenario Outline: dirt generate project --name NAME --location PATH --face MEDIUM/ENGINE
+  # dirt generate project --name NAME --location PATH --face MEDIUM/ENGINE
+  Scenario Outline: Generate project with location and face
     Given this feature is unimplemented
   Examples:
     | nope |

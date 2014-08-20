@@ -1,15 +1,17 @@
-When(/^I run dirt generate with:$/) do |table|
-  options = table.hashes.collect do |h|
-    ["--#{h[:flag]}", "#{h[:value]}"]
-  end.flatten
+When(/^I generate a project with:$/) do |table|
+  Dir.chdir(@run_dir) do
+    options = table.hashes.collect do |h|
+      ["--#{h[:flag]}", "#{h[:value]}"]
+    end.flatten
 
-  input = StringIO.new
-  out = StringIO.new
-  err = StringIO.new
+    input = StringIO.new
+    out = StringIO.new
+    err = StringIO.new
 
-  @output = out.string
+    @output = out.string
 
-  Samling::Cli::Main.new(input, out, err).execute!(options)
+    Samling::Cli::Main.new(input, out, err).execute!(options)
+  end
 end
 
 When(/^I run dirt generate with no args$/) do
