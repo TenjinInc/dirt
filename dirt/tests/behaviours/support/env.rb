@@ -46,8 +46,8 @@ Before do
   double_cmd('git add "/a_path/to/the project/my_project/faces/.gitkeep"')
 
   # git commit/push
-  double_cmd('git commit -am "Dirt project init"')
-  double_cmd('git push origin master')
+  double_cmd('git commit -am "Dirt project init"', puts: 'Dirt project init')
+  double_cmd('git push origin master', puts: 'Pushed')
 
   FakeFS::FileSystem.clear
 

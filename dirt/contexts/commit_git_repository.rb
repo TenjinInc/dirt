@@ -47,9 +47,12 @@ module Samling
         end
       end
 
-      `git commit -am "Dirt project init"`
+      msgs = ['Comitting...']
+      msgs << `git commit -am "Dirt project init"`
 
-      `git push origin master`
+      msgs << `git push origin master`
+
+      msgs.join("\n")
     end
   end
 end

@@ -131,7 +131,7 @@ module Samling
         puts "Time to grow, little #{options[:project_name]}..."
         puts CreateDefaultStructure.run(project_directory)
 
-        CommitGitRepository.run(project_directory)
+        puts CommitGitRepository.run(project_directory)
       end
     end
   end

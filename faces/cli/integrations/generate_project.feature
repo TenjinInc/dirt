@@ -23,6 +23,9 @@ Feature: it should create new project with its default contents and an accompany
       | dirt/tests/behaviours/step_definitions |
       | dirt/tests/isolations                  |
       | faces                                  |
+    And it should say "Comitting..."
+    And it should say "Dirt project init"
+    And it should say "Pushed"
     And it should have called "git push origin master"
   Examples:
     | given name       | displayed name   | parent path            | project directory | bare path       |
