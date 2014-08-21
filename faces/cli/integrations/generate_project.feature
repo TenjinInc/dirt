@@ -44,22 +44,32 @@ Feature: it should create new project with its default contents and an accompany
     And it should have called "git init --bare some/git/my_project.git"
     And it should say "Cloning into '<parent path>/my_project'..."
     And it should say "Created project structure in <parent path>/my_project."
-    And ls should show the following files in "<parent path>/my_project":
-      | path                                   |
-      | config                                 |
-      | dirt/contexts                          |
-      | dirt/contexts/roles                    |
-      | dirt/models                            |
-      | dirt/tests/behaviours                  |
-      | dirt/tests/behaviours/support          |
-      | dirt/tests/behaviours/step_definitions |
-      | dirt/tests/isolations                  |
-      | faces                                  |
     And it should have called "git push origin master"
   Examples:
     | parent path            |
     | /a_path/to/the project |
     | /some/other/path       |
+
+    # dirt generate project --name NAME --bare-path PATH --host HOSTNAME
+  Scenario Outline: generate project with host name, assume user
+    Given I am in "<project path>"
+    And that I am logged in as "<user>" on <platform>
+    When I generate a project with:
+      | flag      | value       |
+      | name      | my project  |
+      | bare-path | <bare path> |
+      | host      | <host>      |
+    And it should have called "ssh <user>\@<host> "git init --bare <bare path>/my_project.git""
+    And it should say "Initialized empty Git repository in <bare path>/my_project.git/"
+    And it should say "Cloning into '<project path>/my_project'..."
+    And it should say "Created project structure in <project path>/my_project."
+    And it should have called "git push origin master"
+  Examples:
+    | platform | host     | user  | bare path       | project path           |
+    | linux    | machine1 | userA | some/git        | /a_path/to/the project |
+    | windows  | machine1 | userA | some/git        | /a_path/to/the project |
+    | linux    | machine2 | userB | different/bares | /some/other/path       |
+    | windows  | machine2 | userB | different/bares | /some/other/path       |
 
   # dirt generate project --name NAME --bare-path PATH --host HOSTNAME --user USER
   Scenario Outline: generate project with host name and user
@@ -74,20 +84,6 @@ Feature: it should create new project with its default contents and an accompany
     And it should say "Initialized empty Git repository in <bare path>/my_project.git/"
     And it should say "Cloning into '<project path>/my_project'..."
     And it should say "Created project structure in <project path>/my_project."
-    And ls should show the following files in "<project path>/my_project":
-      | path                                   |
-      | config                                 |
-      | dirt/contexts                          |
-      | dirt/contexts/roles                    |
-      | dirt/models                            |
-      | dirt/tests/behaviours                  |
-      | dirt/tests/behaviours/support          |
-      | dirt/tests/behaviours/step_definitions |
-      | dirt/tests/isolations                  |
-      | faces                                  |
-    And it should say "Comitting..."
-    And it should say "Dirt project init"
-    And it should say "Pushed"
     And it should have called "git push origin master"
   Examples:
     | host     | user  | bare path       | project path           |

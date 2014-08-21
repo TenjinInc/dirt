@@ -105,6 +105,7 @@ module Samling
         # options = config_options.merge(options)
 
         options[:project_parent] ||= Pathname.new(Dir.pwd)
+        options[:vcs_user] ||= ENV['USERNAME'] || ENV['USER']
 
         # Capture remaining, non-flag normal arguments
         # options[:arguments] = args
