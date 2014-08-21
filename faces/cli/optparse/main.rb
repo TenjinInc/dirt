@@ -73,19 +73,19 @@ module Samling
           end
 
           opts.on('-b', '--bare-path PATH',
-                  'The parent directory of the new git bare on the host machine (see --host).') do |path|
+                  'The parent directory of the new git bare on the host machine. See --host.') do |path|
             options[:bare_path] = Pathname.new(path)
           end
 
-          # opts.on('-h', '--host ADDRESS',
-          #         'The IP address or name of the device where the bare repository will be kept. Defaults to localhost.') do |host|
-          #   options[:vcs_host] = host
-          # end
+          opts.on('-h', '--host ADDRESS',
+                  'The IP address or name of the machine where the bare repository will be kept. Defaults to localhost.') do |host|
+            options[:vcs_host] = host
+          end
 
-          # opts.on('-u', '--user NAME',
-          #         'The username to be used to log into the host device. Defaults to the name of the user running this script.') do |name|
-          #   options[:vcs_user] = name
-          # end
+          opts.on('-u', '--user NAME',
+                  'The username to be used to log into the host device. Defaults to the name of the user running this script. See --host.') do |name|
+            options[:vcs_user] = name
+          end
 
           # opts.on('-n', '--no-git',
           #         'Skip the git steps.') do |use_git|
@@ -109,24 +109,24 @@ module Samling
         # Capture remaining, non-flag normal arguments
         # options[:arguments] = args
 
-        # assert_required!(options, parser)
+        assert_required!(options, parser)
 
         return options
       end
 
-      # def assert_required!(options, parser)
-      #   unless options[:project_name]
-      #     puts parser
-      #     exit
-      #   end
-      # end
+      def assert_required!(options, parser)
+        unless options[:project_name] && options[:bare_path]
+          puts parser
+          @kernel.exit
+        end
+      end
 
       def select_and_run_context(options)
         project_directory = options[:project_name].gsub(' ', '').underscore
         project_directory = options[:project_parent].expand_path + project_directory
 
         # puts 'Skipping git steps.'
-        puts CreateGitRepository.run(project_directory, options[:bare_path], nil, nil)
+        puts CreateGitRepository.run(project_directory, options[:bare_path], options[:vcs_host], options[:vcs_user])
 
         puts "Time to grow, little #{options[:project_name]}..."
         puts CreateDefaultStructure.run(project_directory)

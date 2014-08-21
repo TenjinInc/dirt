@@ -1,5 +1,5 @@
 When(/^I generate a project with:$/) do |table|
-  Dir.chdir(@run_dir) do
+  Dir.chdir(@run_dir || Dir.pwd) do
     options = table.hashes.collect do |h|
       ["--#{h[:flag]}", "#{h[:value]}"]
     end.flatten
@@ -7,10 +7,19 @@ When(/^I generate a project with:$/) do |table|
     input = StringIO.new
     out = StringIO.new
     err = StringIO.new
+    kernel = double('kernel')
+
+    kernel.stub(:exit) do
+      raise KernelExited
+    end
 
     @output = out.string
 
-    Samling::Cli::Main.new(input, out, err).execute!(options)
+    begin
+      Samling::Cli::Main.new(input, out, err, kernel).execute!(options)
+    rescue KernelExited
+      @exited = true
+    end
   end
 end
 

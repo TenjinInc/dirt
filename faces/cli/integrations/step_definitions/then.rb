@@ -2,6 +2,10 @@ Then(/^it should say "(.*?)"$/) do |msg|
   (@output || '').split("\n").should include msg
 end
 
+Then(/^it should say the usage$/) do
+  (@output || '').should include 'Usage:'
+end
+
 Then(/^ls should show the following files in "(.*?)":$/) do |location, table|
   Dir.chdir(location) do
 
@@ -23,4 +27,8 @@ Then(/^it should have called "(.*?)"$/) do |command|
   FakeFS.deactivate!
   history.should include command.shellsplit
   FakeFS.activate!
+end
+
+Then(/^it should exit with an error$/) do
+  @exited.should be_true
 end

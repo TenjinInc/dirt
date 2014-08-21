@@ -1,6 +1,5 @@
 require './dirt/dirt'
 require 'rspec/matchers'
-
 require 'fakefs/safe'
 require 'aruba-doubles'
 
@@ -11,13 +10,27 @@ Before do
   double_cmd('git init --bare some/git/my_project.git', puts: 'Initialized empty Git repository in some/git/my_project.git/')
   double_cmd('git init --bare different/bares/my_other_project.git', puts: 'Initialized empty Git repository in different/bares/my_other_project.git/')
 
-  double_cmd('ssh machine1 "git init --bare some/git/my_project.git"', puts: 'Initialized empty Git repository in some/git/my_project.git/')
-  double_cmd('ssh machine2 "git init --bare different/bares/my_other_project.git"', puts: 'Initialized empty Git repository in different/bares/my_other_project.git/')
+  double_cmd('ssh userA@machine1 "git init --bare some/git/my_project.git"', puts: 'Initialized empty Git repository in some/git/my_project.git/')
+  double_cmd('ssh userB@machine1 "git init --bare some/git/my_project.git"', puts: 'Initialized empty Git repository in some/git/my_project.git/')
+  double_cmd('ssh userA@machine2 "git init --bare different/bares/my_project.git"', puts: 'Initialized empty Git repository in different/bares/my_project.git/')
+  double_cmd('ssh userB@machine2 "git init --bare different/bares/my_project.git"', puts: 'Initialized empty Git repository in different/bares/my_project.git/')
+  double_cmd('ssh userB@machine2 "git init --bare different/bares/my_other_project.git"', puts: 'Initialized empty Git repository in different/bares/my_other_project.git/')
 
   # git clone
   double_cmd('git clone "some/git/my_project.git" "/a_path/to/the project/my_project"', puts: "Cloning into '/a_path/to/the project/my_project'...")
   double_cmd('git clone "some/git/my_project.git" "/some/other/path/my_project"', puts: "Cloning into '/some/other/path/my_project'...")
   double_cmd('git clone "different/bares/my_other_project.git" "/some/other/path/my_other_project"', puts: "Cloning into '/some/other/path/my_other_project'...")
+
+  double_cmd('git clone userA@machine1:some/git/my_project.git "/a_path/to/the project/my_project"', puts: "Cloning into '/a_path/to/the project/my_project'...")
+  double_cmd('git clone userA@machine1:different/bares/my_other_project.git "/some/other/path/my_other_project"', puts: "Cloning into '/some/other/path/my_other_project'...")
+  double_cmd('git clone userB@machine1:some/git/my_project.git "/a_path/to/the project/my_project"', puts: "Cloning into '/a_path/to/the project/my_project'...")
+  double_cmd('git clone userB@machine1:different/bares/my_other_project.git "/some/other/path/my_other_project"', puts: "Cloning into '/some/other/path/my_other_project'...")
+
+  double_cmd('git clone userA@machine2:some/git/my_project.git "/a_path/to/the project/my_project"', puts: "Cloning into '/a_path/to/the project/my_project'...")
+  double_cmd('git clone userA@machine2:different/bares/my_other_project.git "/some/other/path/my_other_project"', puts: "Cloning into '/some/other/path/my_other_project'...")
+  double_cmd('git clone userB@machine2:some/git/my_project.git "/a_path/to/the project/my_project"', puts: "Cloning into '/a_path/to/the project/my_project'...")
+  double_cmd('git clone userB@machine2:different/bares/my_other_project.git "/some/other/path/my_other_project"', puts: "Cloning into '/some/other/path/my_other_project'...")
+  double_cmd('git clone userB@machine2:different/bares/my_project.git "/some/other/path/my_project"', puts: "Cloning into '/some/other/path/my_project'...")
 
   # git add
   double_cmd('git add "/some/other/path/my_other_project/Gemfile"')
