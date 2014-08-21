@@ -4,37 +4,23 @@ Feature: create VCS repository
   # but we don't need it yet - remiller
 
   Scenario Outline: local host
-    When it creates a VCS bare under bare_path: "<bare_path>", and project_path: "<working_project_path>"
+    When it creates a VCS bare under bare_path: "<given_bare_path>", and project_path: "<working_project_path>"
     Then it should run exactly:
-      | command                                      |
-      | git init --bare <bare_path>                  |
-      | git clone <bare_path> <working_project_path> |
+      | command                                              |
+      | git init --bare <created_bare_path>                  |
+      | git clone <created_bare_path> <working_project_path> |
   Examples:
-    | bare_path                     | working_project_path |
-    | some/path.git                 | the/project/path     |
-    | different/barish/location.git | another/directory    |
-
-  Scenario: local host with incomplete bare name
-    When it creates a VCS bare under bare_path: "some/path", and project_path: "the/project/path"
-    Then it should run exactly:
-      | command                                  |
-      | git init --bare some/path.git            |
-      | git clone some/path.git the/project/path |
+    | working_project_path | given_bare_path | created_bare_path           |
+    | the/project/path     | some            | some/path.git               |
+    | another/project      | different/bares | different/bares/project.git |
 
   Scenario Outline: remote host
-    When it creates a bare VCS under host: "<host>", user: "<user>", bare_path: "<bare_path>", and project_path: "<working_project_path>"
+    When it creates a bare VCS under host: "<host>", user: "<user>", bare_path: "<given_bares_path>", and project_path: "<working_project_path>"
     Then it should run exactly:
-      | command                                                    |
-      | ssh <user>@<host> "git init --bare <bare_path>"            |
-      | git clone <user>@<host>:<bare_path> <working_project_path> |
+      | command                                                            |
+      | ssh <user>@<host> "git init --bare <created_bare_path>"            |
+      | git clone <user>@<host>:<created_bare_path> <working_project_path> |
   Examples:
-    | host     | user  | bare_path                     | working_project_path |
-    | machine1 | userA | some/bare/path.git            | the/project/path     |
-    | machine2 | userB | different/barish/location.git | another/directory    |
-
-  Scenario: remote host with incomplete bare name
-    When it creates a bare VCS under host: "machine1", user: "userA", bare_path: "some/bare/path", and project_path: "the/project/path"
-    Then it should run exactly:
-      | command                                                      |
-      | ssh userA@machine1 "git init --bare some/bare/path.git"      |
-      | git clone userA@machine1:some/bare/path.git the/project/path |
+    | host     | user  | working_project_path | given_bares_path | created_bare_path           |
+    | machine1 | userA | the/project/path     | some             | some/path.git               |
+    | machine2 | userB | another/project      | different/bares  | different/bares/project.git |

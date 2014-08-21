@@ -23,16 +23,11 @@
 
 module Samling
   class CreateGitRepository < Dirt::Context
-    def initialize(project_path, bare_path, host, user)
+    def initialize(project_path, bare_parent_path, host, user)
       @project_path = Pathname.new(project_path)
-      @bare_path = Pathname.new(bare_path)
+      @bare_path = Pathname.new(bare_parent_path) + (@project_path.basename.to_s + '.git')
       @host = host
       @user = user
-
-      @bare_path = Pathname.new(@bare_path.to_s + '.git') if @bare_path.extname.blank?
-
-      # @project_root_path = Pathname.new(project_root)
-      # @project_directory = @project_root_path.basename
     end
 
     def call

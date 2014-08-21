@@ -50,6 +50,8 @@ module Samling
                           'dirt/tests/behaviours/step_definitions/then.rb' => nil})
 
       g.generate_templates(@project_root)
+
+      "Created project structure in #{@project_root.to_s}."
     end
   end
 end

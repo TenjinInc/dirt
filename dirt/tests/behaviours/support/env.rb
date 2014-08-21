@@ -8,7 +8,7 @@ Before do
   ArubaDoubles::Double.setup
 
   double_cmd('git init --bare some/path.git', puts: 'Initialized empty Git repository in some/path.git/')
-  double_cmd('git init --bare different/barish/location.git', puts: 'Initialized empty Git repository in different/barish/location.git/')
+  double_cmd('git init --bare different/bares/project.git', puts: 'Initialized empty Git repository in different/barish/location.git/')
 
   double_cmd('ssh machine1 "git init --bare some/bare/path.git"', puts: 'Initialized empty Git repository in some/bare/path.git/')
   double_cmd('ssh machine2 "git init --bare different/barish/location.git"', puts: 'Initialized empty Git repository in different/barish/location.git/')

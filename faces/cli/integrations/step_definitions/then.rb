@@ -19,7 +19,7 @@ Then(/^there should( not)? be a( central)? git repository in "(.*?)"$/) do |exis
   pending 'use ls to check if there is a .git repo in that file'
 end
 
-Then(/^it should call "(.*?)"$/) do |command|
+Then(/^it should have called "(.*?)"$/) do |command|
   FakeFS.deactivate!
   history.should include command.shellsplit
   FakeFS.activate!

@@ -72,6 +72,11 @@ module Samling
           #   options[:project_root] = path
           # end
 
+          opts.on('-b', '--bare-path PATH',
+                  'The parent directory of the git bare that will be created.') do |path|
+            options[:bare_path] = Pathname.new(path)
+          end
+
           # opts.on('-h', '--host ADDRESS',
           #         'The IP address or name of the device where the bare repository will be kept. Defaults to localhost.') do |host|
           #   options[:vcs_host] = host
@@ -121,11 +126,12 @@ module Samling
         project_directory = options[:project_root].expand_path + project_directory
 
         # puts 'Skipping git steps.'
-        # CreateVcsRepository.run(project_directory)
+        CreateGitRepository.run(project_directory, options[:bare_path], nil, nil)
 
         puts "Time to grow, little #{options[:project_name]}..."
-        CreateDefaultStructure.run(project_directory)
-        puts "Created project structure in #{project_directory.to_s}."
+        puts CreateDefaultStructure.run(project_directory)
+
+        CommitGitRepository.run(project_directory)
       end
     end
   end

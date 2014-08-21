@@ -4,9 +4,11 @@ Feature: it should create new project with its default contents and an accompany
   Scenario Outline: dirt generate project --name NAME
     Given I am in "<parent_path>"
     When I generate a project with:
-      | flag | value        |
-      | name | <given name> |
+      | flag      | value        |
+      | name      | <given name> |
+      | bare-path | <bare path>  |
     Then it should say "Time to grow, little <displayed name>..."
+    And it should have called "git init --bare <bare path>/<project_directory>.git"
     And it should say "Created project structure in <parent_path>/<project_directory>."
     And ls should show the following files in "<parent_path>/<project_directory>":
       | path                                   |
@@ -19,10 +21,11 @@ Feature: it should create new project with its default contents and an accompany
       | dirt/tests/behaviours/step_definitions |
       | dirt/tests/isolations                  |
       | faces                                  |
+    And it should have called "git push origin master"
   Examples:
-    | given name       | displayed name   | parent_path            | project_directory |
-    | my project       | My Project       | /a_path/to/the project | my_project        |
-    | my other project | My Other Project | /some/other/path       | my_other_project  |
+    | given name       | displayed name   | parent_path            | project_directory | bare path       |
+    | my project       | My Project       | /a_path/to/the project | my_project        | some            |
+    | my other project | My Other Project | /some/other/path       | my_other_project  | different/bares |
 
   Scenario Outline: dirt generate project --name NAME --location PATH
     Given I am in "/"
