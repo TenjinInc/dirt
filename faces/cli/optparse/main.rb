@@ -67,13 +67,13 @@ module Samling
             options[:project_name] = name.titlecase
           end
 
-          # opts.on('-l', '--location PATH',
-          #         'The parent directory of the new project on the host machine (see --host).') do |path|
-          #   options[:project_root] = path
-          # end
+          opts.on('-l', '--location PATH',
+                  'The parent directory of the new project on the local machine.') do |path|
+            options[:project_parent] = Pathname.new(path)
+          end
 
           opts.on('-b', '--bare-path PATH',
-                  'The parent directory of the git bare that will be created.') do |path|
+                  'The parent directory of the new git bare on the host machine (see --host).') do |path|
             options[:bare_path] = Pathname.new(path)
           end
 
@@ -104,7 +104,7 @@ module Samling
         #
         # options = config_options.merge(options)
 
-        options[:project_root] = Pathname.new(Dir.pwd)
+        options[:project_parent] ||= Pathname.new(Dir.pwd)
 
         # Capture remaining, non-flag normal arguments
         # options[:arguments] = args
@@ -123,7 +123,7 @@ module Samling
 
       def select_and_run_context(options)
         project_directory = options[:project_name].gsub(' ', '').underscore
-        project_directory = options[:project_root].expand_path + project_directory
+        project_directory = options[:project_parent].expand_path + project_directory
 
         # puts 'Skipping git steps.'
         puts CreateGitRepository.run(project_directory, options[:bare_path], nil, nil)

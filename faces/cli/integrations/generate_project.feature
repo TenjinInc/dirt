@@ -1,7 +1,8 @@
 Feature: it should create new project with its default contents and an accompanying git repo
 
   # === Happy cases ====
-  Scenario Outline: dirt generate project --name NAME
+  # dirt generate project --name NAME
+  Scenario Outline: generate project with just name, assume location is CWD
     Given I am in "<parent path>"
     When I generate a project with:
       | flag      | value        |
@@ -35,13 +36,34 @@ Feature: it should create new project with its default contents and an accompany
   Scenario Outline: dirt generate project --name NAME --location PATH
     Given I am in "/"
     When I generate a project with:
-      | flag     | value      |
-      | name     | <name>     |
-      | location | <location> |
+      | flag      | value         |
+      | name      | my project    |
+      | bare-path | some/git      |
+      | location  | <parent path> |
+    Then it should say "Time to grow, little My Project..."
+    And it should have called "git init --bare some/git/my_project.git"
+    And it should say "Initialized empty Git repository in some/git/my_project.git/"
+    And it should say "Cloning into '<parent path>/my_project'..."
+    And it should say "Created project structure in <parent path>/my_project."
+    And ls should show the following files in "<parent path>/my_project":
+      | path                                   |
+      | config                                 |
+      | dirt/contexts                          |
+      | dirt/contexts/roles                    |
+      | dirt/models                            |
+      | dirt/tests/behaviours                  |
+      | dirt/tests/behaviours/support          |
+      | dirt/tests/behaviours/step_definitions |
+      | dirt/tests/isolations                  |
+      | faces                                  |
+    And it should say "Comitting..."
+    And it should say "Dirt project init"
+    And it should say "Pushed"
+    And it should have called "git push origin master"
   Examples:
-    | name             | location               |
-    | my_project       | /a_path/to/the project |
-    | my_other_project | /some/other/path/      |
+    | parent path            |
+    | /a_path/to/the project |
+    | /some/other/path       |
 
   #  dirt generate project --name NAME --face MEDIUM/ENGINE
   Scenario Outline: Generate project with face

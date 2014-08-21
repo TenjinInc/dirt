@@ -16,6 +16,7 @@ Before do
 
   # git clone
   double_cmd('git clone "some/git/my_project.git" "/a_path/to/the project/my_project"', puts: "Cloning into '/a_path/to/the project/my_project'...")
+  double_cmd('git clone "some/git/my_project.git" "/some/other/path/my_project"', puts: "Cloning into '/some/other/path/my_project'...")
   double_cmd('git clone "different/bares/my_other_project.git" "/some/other/path/my_other_project"', puts: "Cloning into '/some/other/path/my_other_project'...")
 
   # git add
