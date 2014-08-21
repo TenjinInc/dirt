@@ -126,7 +126,7 @@ module Samling
         project_directory = options[:project_root].expand_path + project_directory
 
         # puts 'Skipping git steps.'
-        CreateGitRepository.run(project_directory, options[:bare_path], nil, nil)
+        puts CreateGitRepository.run(project_directory, options[:bare_path], nil, nil)
 
         puts "Time to grow, little #{options[:project_name]}..."
         puts CreateDefaultStructure.run(project_directory)

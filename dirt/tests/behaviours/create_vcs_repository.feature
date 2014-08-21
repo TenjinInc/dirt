@@ -21,6 +21,6 @@ Feature: create VCS repository
       | ssh <user>@<host> "git init --bare <created_bare_path>"            |
       | git clone <user>@<host>:<created_bare_path> <working_project_path> |
   Examples:
-    | host     | user  | working_project_path | given_bares_path | created_bare_path           |
-    | machine1 | userA | the/project/path     | some             | some/path.git               |
-    | machine2 | userB | another/project      | different/bares  | different/bares/project.git |
+    | host     | user  | working_project_path     | given_bares_path | created_bare_path                    |
+    | machine1 | userA | the/project/my_project   | some/git/        | some/git/my_project.git              |
+    | machine2 | userB | another/my_other_project | different/bares  | different/bares/my_other_project.git |

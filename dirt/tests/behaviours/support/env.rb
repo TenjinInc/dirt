@@ -7,17 +7,18 @@ require 'aruba-doubles'
 Before do
   ArubaDoubles::Double.setup
 
-  double_cmd('git init --bare some/path.git', puts: 'Initialized empty Git repository in some/path.git/')
-  double_cmd('git init --bare different/bares/project.git', puts: 'Initialized empty Git repository in different/barish/location.git/')
+  # git init
+  double_cmd('git init --bare some/git/my_project.git', puts: 'Initialized empty Git repository in some/git/my_project.git/')
+  double_cmd('git init --bare different/bares/my_other_project.git', puts: 'Initialized empty Git repository in different/bares/my_other_project.git/')
 
-  double_cmd('ssh machine1 "git init --bare some/bare/path.git"', puts: 'Initialized empty Git repository in some/bare/path.git/')
-  double_cmd('ssh machine2 "git init --bare different/barish/location.git"', puts: 'Initialized empty Git repository in different/barish/location.git/')
+  double_cmd('ssh machine1 "git init --bare some/git/my_project.git"', puts: 'Initialized empty Git repository in some/git/my_project.git/')
+  double_cmd('ssh machine2 "git init --bare different/bares/my_other_project.git"', puts: 'Initialized empty Git repository in different/bares/my_other_project.git/')
 
-  double_cmd('git init --bare different/barish/location.git', puts: 'Initialized empty Git repository in different/barish/location.git/')
+  # git clone
+  double_cmd('git clone "some/git/my_project.git" "/a_path/to/the project/my_project"', puts: "Cloning into '/a_path/to/the project/my_project'...")
+  double_cmd('git clone "different/bares/my_other_project.git" "/some/other/path/my_other_project"', puts: "Cloning into '/some/other/path/my_other_project'...")
 
-  double_cmd('git clone some/path.git', 'Cloning into \'/home/derp/test/my_project.git\'...')
-  double_cmd('git clone different/barish/location.git', 'Cloning into \'/home/derp/test/my_other_project.git\'...')
-
+  # git add
   double_cmd('git add "/some/other/path/my_other_project/Gemfile"')
   double_cmd('git add "/some/other/path/my_other_project/.gitignore"')
   double_cmd('git add "/some/other/path/my_other_project/dirt/tests/behaviours/support/env.rb"')
@@ -44,6 +45,7 @@ Before do
   double_cmd('git add "/a_path/to/the project/my_project/dirt/tests/isolations/.gitkeep"')
   double_cmd('git add "/a_path/to/the project/my_project/faces/.gitkeep"')
 
+  # git commit/push
   double_cmd('git commit -am "Dirt project init"')
   double_cmd('git push origin master')
 
