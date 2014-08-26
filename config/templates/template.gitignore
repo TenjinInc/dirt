@@ -11,11 +11,14 @@
 /db/*.sqlite3
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
+*.log
 /tmp
 
 # Rubymine stuff
 .idea
+
+# Ignore all gem files.
+*.gem
 
 app/config.yml
 config/database.yml
