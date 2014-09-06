@@ -5,7 +5,7 @@ When(/^I generate a project with:$/) do |table|
     end.flatten
 
     input = StringIO.new
-    out = StringIO.new
+    @output = StringIO.new
     err = StringIO.new
     kernel = double('kernel')
 
@@ -13,10 +13,10 @@ When(/^I generate a project with:$/) do |table|
       raise KernelExited
     end
 
-    @output = out.string
-
     begin
-      Samling::Cli::Main.new(input, out, err, kernel).execute!(options)
+      Samling::Cli::Main.new(input, @output, err, kernel).execute!(['generate'] + options)
+
+      @output.rewind
     rescue KernelExited
       @exited = true
     end

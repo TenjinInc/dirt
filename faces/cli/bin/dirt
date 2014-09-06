@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require 'bundler'
-Bundler.setup(:default)
+#Bundler.setup(:default)
 require_relative '../optparse/main'
 
 Samling::Cli::Main.new.execute!(ARGV.dup)

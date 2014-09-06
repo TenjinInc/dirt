@@ -18,4 +18,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['dirt']
 
   spec.required_ruby_version = '>= 1.9.3'
+
+  spec.add_runtime_dependency 'dirt-core', '~> 2.2.2'
 end

@@ -1,9 +1,23 @@
 Then(/^it should say "(.*?)"$/) do |msg|
-  (@output || '').split("\n").should include msg
+  @output.readline.strip.should == msg
+end
+
+Then(/^it should say "(.*?)" somewhere$/) do |msg|
+  pos = @output.pos
+
+  @output.rewind
+  @output.read.split("\n").should include(msg)
+
+  @output.seek(pos)
 end
 
 Then(/^it should say the usage$/) do
-  (@output || '').should include 'Usage:'
+  pos = @output.pos
+
+  @output.rewind
+  (@output.read || '').should include 'Usage:'
+
+  @output.seek(pos)
 end
 
 Then(/^ls should show the following files in "(.*?)":$/) do |location, table|

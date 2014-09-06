@@ -21,7 +21,10 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-require './dirt/dirt'
+src_dir = File.expand_path('../dirt', __FILE__)
+$LOAD_PATH.unshift(src_dir) unless $LOAD_PATH.include?(src_dir)
+
+require 'dirt'
 
 require 'optparse'
 require 'yaml'
@@ -126,10 +129,11 @@ module Samling
         project_directory = options[:project_name].gsub(' ', '').underscore
         project_directory = options[:project_parent].expand_path + project_directory
 
-        # puts 'Skipping git steps.'
-        puts CreateGitRepository.run(project_directory, options[:bare_path], options[:vcs_host], options[:vcs_user])
-
         puts "Time to grow, little #{options[:project_name]}..."
+
+        # puts 'Skipping git steps.'
+        CreateGitRepository.run(project_directory, options[:bare_path], options[:vcs_host], options[:vcs_user])
+
         puts CreateDefaultStructure.run(project_directory)
 
         puts CommitGitRepository.run(project_directory)

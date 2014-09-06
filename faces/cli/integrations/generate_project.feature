@@ -10,9 +10,6 @@ Feature: it should create new project with its default contents and an accompany
       | bare-path | <bare path>  |
     Then it should say "Time to grow, little <displayed name>..."
     And it should have called "git init --bare <bare path>/<project directory>.git"
-    And it should say "Initialized empty Git repository in <bare path>/<project directory>.git/"
-    And it should say "Cloning into '<parent path>/<project directory>'..."
-    And it should say "Created project structure in <parent path>/<project directory>."
     And ls should show the following files in "<parent path>/<project directory>":
       | path                                   |
       | config                                 |
@@ -24,9 +21,8 @@ Feature: it should create new project with its default contents and an accompany
       | dirt/tests/behaviours/step_definitions |
       | dirt/tests/isolations                  |
       | faces                                  |
-    And it should say "Comitting..."
-    And it should say "Dirt project init"
-    And it should say "Pushed"
+    And it should say "Created project structure in <parent path>/<project directory>."
+    And it should say "Comitting and pushing..."
     And it should have called "git push origin master"
   Examples:
     | given name       | displayed name   | parent path            | project directory | bare path       |
@@ -42,8 +38,7 @@ Feature: it should create new project with its default contents and an accompany
       | bare-path | some/git      |
       | location  | <parent path> |
     And it should have called "git init --bare some/git/my_project.git"
-    And it should say "Cloning into '<parent path>/my_project'..."
-    And it should say "Created project structure in <parent path>/my_project."
+    And it should say "Created project structure in <parent path>/my_project." somewhere
     And it should have called "git push origin master"
   Examples:
     | parent path            |
@@ -60,9 +55,7 @@ Feature: it should create new project with its default contents and an accompany
       | bare-path | <bare path> |
       | host      | <host>      |
     And it should have called "ssh <user>\@<host> "git init --bare <bare path>/my_project.git""
-    And it should say "Initialized empty Git repository in <bare path>/my_project.git/"
-    And it should say "Cloning into '<project path>/my_project'..."
-    And it should say "Created project structure in <project path>/my_project."
+    And it should say "Created project structure in <project path>/my_project." somewhere
     And it should have called "git push origin master"
   Examples:
     | platform | host     | user  | bare path       | project path           |
@@ -81,9 +74,7 @@ Feature: it should create new project with its default contents and an accompany
       | host      | <host>      |
       | user      | <user>      |
     And it should have called "ssh <user>\@<host> "git init --bare <bare path>/my_project.git""
-    And it should say "Initialized empty Git repository in <bare path>/my_project.git/"
-    And it should say "Cloning into '<project path>/my_project'..."
-    And it should say "Created project structure in <project path>/my_project."
+    And it should say "Created project structure in <project path>/my_project." somewhere
     And it should have called "git push origin master"
   Examples:
     | host     | user  | bare path       | project path           |

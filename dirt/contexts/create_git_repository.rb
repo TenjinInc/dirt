@@ -31,17 +31,13 @@ module Samling
     end
 
     def call
-      msgs = []
-
       if @host.blank?
-        msgs << `git init --bare #{@bare_path}`
-        msgs << `git clone "#{@bare_path}" "#{@project_path}"`
+        system(%Q{git init --bare #{@bare_path}})
+        system(%Q{git clone "#{@bare_path}" "#{@project_path}"})
       else
-        msgs << `ssh #{@user}@#{@host} "git init --bare #{@bare_path}"`
-        msgs << `git clone #{@user}@#{@host}:#{@bare_path} "#{@project_path}"`
+        system(%Q{ssh #{@user}@#{@host} "git init --bare #{@bare_path}"})
+        system(%Q{git clone #{@user}@#{@host}:#{@bare_path} "#{@project_path}"})
       end
-
-      msgs.join("\n")
     end
   end
 end

@@ -43,16 +43,15 @@ module Samling
         path = Pathname.new(f)
 
         if path.file?
-          `git add "#{f}"`
+          system(%Q{git add "#{f}"})
         end
       end
 
-      msgs = ['Comitting...']
-      msgs << `git commit -am "Dirt project init"`
+      system(%q{git commit -am "Dirt project init"})
 
-      msgs << `git push origin master`
+      system(%q{git push origin master})
 
-      msgs.join("\n")
+      'Comitting and pushing...'
     end
   end
 end
