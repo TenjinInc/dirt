@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'http://www.tenjin.ca'
   spec.license       = 'MIT'
 
-  spec.files         = `git ls-files`.split("\n").reject { |path| path =~ /\.gitignore$|.*\.gemspec$/ }
+  spec.files         = `git ls-files`.split("\n").reject { |path| path =~ %r{^\.gitignore$|^.*\.gemspec$} }
   spec.bindir        = ['faces/cli/bin']
   spec.executables   = ['dirt']
   spec.require_paths = ['dirt']

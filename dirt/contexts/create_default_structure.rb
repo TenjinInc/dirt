@@ -41,15 +41,15 @@ module Samling
         FileUtils.mkdir_p(@project_root + path)
       end
 
-      g = Generating.new({'.gitignore' => 'template.gitignore',
-                          'Gemfile' => 'template.Gemfile',
-                          "dirt/project_name.rb" => 'template.project_name.rb',
-                          'dirt/tests/behaviours/support/env.rb' => 'template.env.rb',
-                          'dirt/tests/behaviours/step_definitions/given.rb' => nil,
-                          'dirt/tests/behaviours/step_definitions/when.rb' => nil,
-                          'dirt/tests/behaviours/step_definitions/then.rb' => nil})
+      files_to_templates = {'.gitignore' => 'template.gitignore',
+                            'Gemfile' => 'template.Gemfile',
+                            "dirt/project_name.rb" => 'template.project_name.rb',
+                            'dirt/tests/behaviours/support/env.rb' => 'template.env.rb',
+                            'dirt/tests/behaviours/step_definitions/given.rb' => nil,
+                            'dirt/tests/behaviours/step_definitions/when.rb' => nil,
+                            'dirt/tests/behaviours/step_definitions/then.rb' => nil}
 
-      g.generate_templates(@project_root)
+      Generating.new(files_to_templates).generate_templates(@project_root)
 
       "Created project structure in #{@project_root.to_s}."
     end

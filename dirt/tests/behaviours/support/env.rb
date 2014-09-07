@@ -69,15 +69,17 @@ Before do
   Dir['./config/**/*'].each do |file|
     FakeFS.deactivate!
 
+    fake_loc = Dirt::PROJECT_ROOT + file
+
     if File.directory? file
       FakeFS.activate!
-      FileUtils.mkdir(file)
+      FileUtils.mkdir_p(fake_loc)
     else
       content = File.read(file)
       FakeFS.activate!
-      FileUtils.mkdir_p(File.dirname(file))
-      FileUtils.touch(file)
-      File.open(file, 'w+') { |f| f.write(content) }
+      FileUtils.mkdir_p(File.dirname(fake_loc))
+      FileUtils.touch(fake_loc)
+      File.open(fake_loc, 'w+') { |f| f.write(content) }
     end
   end
   FakeFS.activate!

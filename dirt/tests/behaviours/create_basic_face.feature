@@ -21,11 +21,11 @@ Feature: create default face
       | <project_path>/dirt/faces/<face_name>/integrations/step_definitions/ |
     When I create a new basic face "<face_name>" at "<project_path>"
     Then there should be files for "<project_name>" from templates:
-      | path                                                                    | template        |
-      | <project_path>/faces/<face_name>/integrations/support/env.rb            | template.env.rb |
-      | <project_path>/faces/<face_name>/integrations/step_definitions/given.rb |                 |
-      | <project_path>/faces/<face_name>/integrations/step_definitions/when.rb  |                 |
-      | <project_path>/faces/<face_name>/integrations/step_definitions/then.rb  |                 |
+      | path                                                                     | template        |
+      | /<project_path>/faces/<face_name>/integrations/support/env.rb            | template.env.rb |
+      | /<project_path>/faces/<face_name>/integrations/step_definitions/given.rb |                 |
+      | /<project_path>/faces/<face_name>/integrations/step_definitions/when.rb  |                 |
+      | /<project_path>/faces/<face_name>/integrations/step_definitions/then.rb  |                 |
   Examples:
     | project_name    | project_path              | face_name |
     | my_project      | my_project                | web       |

@@ -25,7 +25,7 @@ module Samling
   class CreateBasicFace < Dirt::Context
     def initialize(root_path, face_name)
       @root_path = Pathname.new(root_path)
-      @face_root = @root_path + 'faces' + face_name
+      @face_root = Pathname.new('faces') + face_name
     end
 
     def call
@@ -33,23 +33,28 @@ module Samling
                 integrations/step_definitions}
 
       dirs.each do |f|
-        FileUtils.mkdir_p(@face_root + f)
+        FileUtils.mkdir_p(@root_path + @face_root + f)
       end
 
-      files_to_templates = {'integrations/support/env.rb' => 'template.env.rb'}
+      files_to_templates = {(@face_root + 'integrations/support/env.rb').to_s => 'template.env.rb'}
 
-      files_to_templates.each do |f, t|
-        File.open((@face_root + f).to_s, 'w') do |file|
-          specified_content = File.read(Pathname.new('config/templates/' + t).to_s)
-          specified_content.gsub!('<project_name>', @root_path.basename.to_s)
+      # this isn't a great way to find the dir, but at the time of writing, there isn't a nicer one -remiller
+      # templates_dir = Pathname.new(__FILE__).dirname
 
-          file.write(specified_content)
-        end
-      end
+      # files_to_templates.each do |f, t|
+      #   File.open((@face_root + f).to_s, 'w') do |file|
+      #     specified_content = File.read(Pathname.new('config/templates/' + t).to_s)
+      #     specified_content.gsub!('<project_name>', @root_path.basename.to_s)
+      #
+      #     file.write(specified_content)
+      #   end
+      # end
 
-      FileUtils.touch((@face_root + 'integrations/step_definitions/given.rb').to_s)
-      FileUtils.touch((@face_root + 'integrations/step_definitions/when.rb').to_s)
-      FileUtils.touch((@face_root + 'integrations/step_definitions/then.rb').to_s)
+      Generating.new(files_to_templates).generate_templates(@root_path)
+
+      FileUtils.touch((@root_path + @face_root + 'integrations/step_definitions/given.rb').to_s)
+      FileUtils.touch((@root_path + @face_root + 'integrations/step_definitions/when.rb').to_s)
+      FileUtils.touch((@root_path + @face_root + 'integrations/step_definitions/then.rb').to_s)
     end
   end
 end
