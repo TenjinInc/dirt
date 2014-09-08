@@ -14,10 +14,10 @@ Then(/^it should run git add on exactly the following files in "(.*?)":$/) do |b
   expected_commands = table.hashes.collect do |h|
     path = Pathname.new(base_path) + Pathname.new(h[:path])
 
-    "git add \"#{path}\"".shellsplit
+    %Q{git --git-dir "#{base_path}/.git" --work-tree "#{base_path}" add "#{path}"}.shellsplit
   end
 
-  expected_commands =~ recent_history(expected_commands.size)
+  expected_commands.should =~ recent_history(expected_commands.size)
 end
 
 Then(/^there should be exactly the following (files|directories) in "(.*?)":$/) do |type, location, table|

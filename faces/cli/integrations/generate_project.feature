@@ -23,7 +23,7 @@ Feature: it should create new project with its default contents and an accompany
       | faces                                  |
     And it should say "Created project structure in <parent path>/<project directory>."
     And it should say "Comitting and pushing..."
-    And it should have called "git push origin master"
+    And it should have called "git --git-dir "<parent path>/<project directory>/.git" --work-tree "<parent path>/<project directory>" push origin master"
   Examples:
     | given name       | displayed name   | parent path            | project directory | bare path       |
     | my project       | My Project       | /a_path/to/the project | my_project        | some/git        |
@@ -38,12 +38,12 @@ Feature: it should create new project with its default contents and an accompany
       | bare-path | some/git      |
       | location  | <parent path> |
     And it should have called "git init --bare some/git/my_project.git"
-    And it should say "Created project structure in /<parent path>/my_project." somewhere
-    And it should have called "git push origin master"
+    And it should say "Created project structure in <parent path>/my_project." somewhere
+    And it should have called "git --git-dir "<parent path>/my_project/.git" --work-tree "<parent path>/my_project" push origin master"
   Examples:
-    | parent path           |
-    | a_path/to/the project |
-    | some/other/path       |
+    | parent path            |
+    | /a_path/to/the project |
+    | /some/other/path       |
 
     # dirt generate project --name NAME --bare-path PATH --host HOSTNAME
   Scenario Outline: generate project with host name, assume user
@@ -55,14 +55,14 @@ Feature: it should create new project with its default contents and an accompany
       | bare-path | <bare path> |
       | host      | <host>      |
     And it should have called "ssh <user>\@<host> "git init --bare <bare path>/my_project.git""
-    And it should say "Created project structure in /<project path>/my_project." somewhere
-    And it should have called "git push origin master"
+    And it should say "Created project structure in <project path>/my_project." somewhere
+    And it should have called "git --git-dir "<project path>/my_project/.git" --work-tree "<project path>/my_project" push origin master"
   Examples:
-    | platform | host     | user  | bare path       | project path          |
-    | linux    | machine1 | userA | some/git        | a_path/to/the project |
-    | windows  | machine1 | userA | some/git        | a_path/to/the project |
-    | linux    | machine2 | userB | different/bares | some/other/path       |
-    | windows  | machine2 | userB | different/bares | some/other/path       |
+    | platform | host     | user  | bare path       | project path           |
+    | linux    | machine1 | userA | some/git        | /a_path/to/the project |
+    | windows  | machine1 | userA | some/git        | /a_path/to/the project |
+    | linux    | machine2 | userB | different/bares | /some/other/path       |
+    | windows  | machine2 | userB | different/bares | /some/other/path       |
 
   # dirt generate project --name NAME --bare-path PATH --host HOSTNAME --user USER
   Scenario Outline: generate project with host name and user
@@ -74,12 +74,12 @@ Feature: it should create new project with its default contents and an accompany
       | host      | <host>      |
       | user      | <user>      |
     And it should have called "ssh <user>\@<host> "git init --bare <bare path>/my_project.git""
-    And it should say "Created project structure in /<project path>/my_project." somewhere
-    And it should have called "git push origin master"
+    And it should say "Created project structure in <project path>/my_project." somewhere
+    And it should have called "git --git-dir "<project path>/my_project/.git" --work-tree "<project path>/my_project" push origin master"
   Examples:
-    | host     | user  | bare path       | project path          |
-    | machine1 | userA | some/git        | a_path/to/the project |
-    | machine2 | userB | different/bares | some/other/path       |
+    | host     | user  | bare path       | project path           |
+    | machine1 | userA | some/git        | /a_path/to/the project |
+    | machine2 | userB | different/bares | /some/other/path       |
 
   #  dirt generate project --name NAME --face MEDIUM/ENGINE
   Scenario Outline: Generate project with face

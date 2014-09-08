@@ -43,13 +43,13 @@ module Samling
         path = Pathname.new(f)
 
         if path.file?
-          system(%Q{git add "#{f}"})
+          system(%Q{git --git-dir "#{@project_path}/.git" --work-tree "#{@project_path}" add "#{f}"})
         end
       end
 
-      system(%q{git commit -am "Dirt project init"})
+      system(%Q{git --git-dir "#{@project_path}/.git" --work-tree "#{@project_path}" commit -am "Dirt project init"})
 
-      system(%q{git push origin master})
+      system(%Q{git --git-dir "#{@project_path}/.git" --work-tree "#{@project_path}" push origin master})
 
       'Comitting and pushing...'
     end

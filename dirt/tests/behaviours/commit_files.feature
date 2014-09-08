@@ -10,7 +10,7 @@ Feature: it should commit all files and directories to VCS
       | dirt/models           |
       | dirt/tests/isolations |
       | faces                 |
-    And it should run git add on exactly the following files in "/<project_directory>":
+    And it should run git add on exactly the following files in "<project_directory>":
       | path                                            |
       | Gemfile                                         |
       | .gitignore                                      |
@@ -24,9 +24,9 @@ Feature: it should commit all files and directories to VCS
       | dirt/tests/behaviours/step_definitions/then.rb  |
       | dirt/tests/isolations/.gitkeep                  |
       | faces/.gitkeep                                  |
-    And it should run "git commit -am "Dirt project init""
-    And it should run "git push origin master"
+    And it should run "git --git-dir "<project_directory>/.git" --work-tree "<project_directory>" commit -am "Dirt project init""
+    And it should run "git --git-dir "<project_directory>/.git" --work-tree "<project_directory>" push origin master"
   Examples:
-    | project_directory                | project_name     |
-    | a_path/to/the project/my_project | my_project       |
-    | some/other/path/my_other_project | my_other_project |
+    | project_directory                 | project_name     |
+    | /a_path/to/the project/my_project | my_project       |
+    | /some/other/path/my_other_project | my_other_project |
