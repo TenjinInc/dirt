@@ -12,12 +12,12 @@ end
 
 Then(/^it should run git add on exactly the following files in "(.*?)":$/) do |base_path, table|
   expected_commands = table.hashes.collect do |h|
-    path = Pathname.new(base_path) + Pathname.new(h[:path])
+    path = Pathname.new(base_path) + h[:path]
 
-    %Q{git --git-dir "#{base_path}/.git" --work-tree "#{base_path}" add "#{path}"}.shellsplit
+    %Q{git --git-dir "#{base_path}/.git" --work-tree "#{base_path}" add -v "#{path}"}.shellsplit
   end
 
-  expected_commands.should =~ recent_history(expected_commands.size)
+  recent_history(expected_commands.size).should =~ expected_commands
 end
 
 Then(/^there should be exactly the following (files|directories) in "(.*?)":$/) do |type, location, table|

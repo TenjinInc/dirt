@@ -43,7 +43,7 @@ module Samling
         path = Pathname.new(f)
 
         if path.file?
-          system(%Q{git --git-dir "#{@project_path}/.git" --work-tree "#{@project_path}" add "#{f}"})
+          system(%Q{git --git-dir "#{@project_path}/.git" --work-tree "#{@project_path}" add -v "#{f}"})
         end
       end
 
