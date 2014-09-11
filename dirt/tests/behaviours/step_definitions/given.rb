@@ -2,9 +2,14 @@ Given(/^a step that is unimplemented$/) do
   pending 'Finish defining this test!'
 end
 
-Given(/^the following directories exist:$/) do |table|
+Given(/^the following (files|directories) exist:$/) do |type, table|
   table.hashes.each do |h|
-    FileUtils.mkdir_p(h[:path])
+    if type == 'directories'
+      FileUtils.mkdir_p(h[:path])
+    else
+      FileUtils.mkdir_p(File.dirname(h[:path]))
+      FileUtils.touch(h[:path])
+    end
   end
 end
 

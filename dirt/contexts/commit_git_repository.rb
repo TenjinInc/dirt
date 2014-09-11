@@ -39,13 +39,10 @@ module Samling
         FileUtils.touch(path)
       end
 
-      Dir["#{@project_path}/**/*"].each do |f|
+      Dir.glob("#{@project_path}/**/*", File::FNM_DOTMATCH).select do |f|
         path = Pathname.new(f)
-
-        if path.file?
-          system(%Q{git --git-dir "#{@project_path}/.git" --work-tree "#{@project_path}" add -v "#{f}"})
-        end
-      end
+        path.file? && !path.to_s.include?('/.git/')
+      end.each { |f| system(%Q{git --git-dir "#{@project_path}/.git" --work-tree "#{@project_path}" add -v "#{f}"}) }
 
       system(%Q{git --git-dir "#{@project_path}/.git" --work-tree "#{@project_path}" commit -am "Dirt project init"})
 

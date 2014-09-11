@@ -2,6 +2,10 @@ Feature: it should commit all files and directories to VCS
 
   Scenario Outline: committing the default structure
     Given the default structure exists in "<project_directory>"
+    And the following files exist:
+      | path                                      |
+      | <project_directory>/.git/some_git_file    |
+      | <project_directory>/.git/.hidden_git_file |
     When it commits all files and directories in "<project_directory>"
     Then it there should be .gitkeep files in exactly the following directories of "<project_directory>"
       | path                  |
