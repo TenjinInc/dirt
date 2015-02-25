@@ -27,7 +27,7 @@ Then(/^there should be exactly the following (files|directories) in "(.*?)":$/) 
   created_files.should =~ expected_files
 end
 
-Then(/^it there should be \.gitkeep files in exactly the following directories of "(.*?)"$/) do |project_directory, table|
+Then(/^there should be \.gitkeep files in exactly the following directories of "(.*?)"$/) do |project_directory, table|
   table.hashes.each do |h|
     expected_file = (Pathname.new(project_directory) + h[:path]) + '.gitkeep'
     expected_file.should exist
@@ -46,7 +46,7 @@ Then(/^there should be files for "(.*?)" from templates:$/) do |project_name, ta
     if h[:template].blank?
       ''
     else
-      File.read("./config/templates/#{h[:template]}").gsub('<project_name>', project_name)
+      File.read("./templates/#{h[:template]}").gsub('<project_name>', project_name)
     end
   end
   FakeFS.activate!

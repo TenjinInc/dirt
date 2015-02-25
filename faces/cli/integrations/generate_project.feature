@@ -13,13 +13,13 @@ Feature: it should create new project with its default contents and an accompany
     And ls should show the following files in "<parent path>/<project directory>":
       | path                                   |
       | config                                 |
-      | dirt/contexts                          |
-      | dirt/contexts/roles                    |
-      | dirt/models                            |
-      | dirt/tests/behaviours                  |
-      | dirt/tests/behaviours/support          |
-      | dirt/tests/behaviours/step_definitions |
-      | dirt/tests/isolations                  |
+      | core/contexts                          |
+      | core/contexts/roles                    |
+      | core/models                            |
+      | core/tests/behaviours                  |
+      | core/tests/behaviours/support          |
+      | core/tests/behaviours/step_definitions |
+      | core/tests/isolations                  |
       | faces                                  |
     And it should say "Created project structure in <parent path>/<project directory>."
     And it should say "Comitting and pushing..."
@@ -123,13 +123,13 @@ Feature: it should create new project with its default contents and an accompany
 #    And ls should show the following files in "<parent_path>/<project_directory>":
 #      | path                                   |
 #      | config                                 |
-#      | dirt/contexts                          |
-#      | dirt/contexts/roles                    |
-#      | dirt/models                            |
-#      | dirt/tests/behaviours                  |
-#      | dirt/tests/behaviours/support          |
-#      | dirt/tests/behaviours/step_definitions |
-#      | dirt/tests/isolations                  |
+#      | core/contexts                          |
+#      | core/contexts/roles                    |
+#      | core/models                            |
+#      | core/tests/behaviours                  |
+#      | core/tests/behaviours/support          |
+#      | core/tests/behaviours/step_definitions |
+#      | core/tests/isolations                  |
 #      | faces                                  |
 #  Examples:
 #    | parent_path           | project_directory | project_name     |

@@ -43,7 +43,7 @@ module Samling
 
       # files_to_templates.each do |f, t|
       #   File.open((@face_root + f).to_s, 'w') do |file|
-      #     specified_content = File.read(Pathname.new('config/templates/' + t).to_s)
+      #     specified_content = File.read(Pathname.new('persist/templates/' + t).to_s)
       #     specified_content.gsub!('<project_name>', @root_path.basename.to_s)
       #
       #     file.write(specified_content)

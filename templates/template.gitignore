@@ -20,5 +20,5 @@
 # Ignore all gem files.
 *.gem
 
-app/config.yml
+core/config.yml
 config/database.yml

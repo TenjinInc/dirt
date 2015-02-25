@@ -7,28 +7,28 @@ Feature: it should commit all files and directories to VCS
       | <project_directory>/.git/some_git_file    |
       | <project_directory>/.git/.hidden_git_file |
     When it commits all files and directories in "<project_directory>"
-    Then it there should be .gitkeep files in exactly the following directories of "<project_directory>"
+    Then there should be .gitkeep files in exactly the following directories of "<project_directory>"
       | path                  |
       | config                |
-      | dirt/contexts/roles   |
-      | dirt/models           |
-      | dirt/tests/isolations |
+      | core/contexts/roles   |
+      | core/models           |
+      | core/tests/isolations |
       | faces                 |
     And it should run git add on exactly the following files in "<project_directory>":
       | path                                            |
       | Gemfile                                         |
       | .gitignore                                      |
       | config/.gitkeep                                 |
-      | dirt/<project_name>.rb                          |
-      | dirt/contexts/roles/.gitkeep                    |
-      | dirt/models/.gitkeep                            |
-      | dirt/tests/behaviours/support/env.rb            |
-      | dirt/tests/behaviours/step_definitions/given.rb |
-      | dirt/tests/behaviours/step_definitions/when.rb  |
-      | dirt/tests/behaviours/step_definitions/then.rb  |
-      | dirt/tests/isolations/.gitkeep                  |
+      | core/<project_name>.rb                          |
+      | core/contexts/roles/.gitkeep                    |
+      | core/models/.gitkeep                            |
+      | core/tests/behaviours/support/env.rb            |
+      | core/tests/behaviours/step_definitions/given.rb |
+      | core/tests/behaviours/step_definitions/when.rb  |
+      | core/tests/behaviours/step_definitions/then.rb  |
+      | core/tests/isolations/.gitkeep                  |
       | faces/.gitkeep                                  |
-    And it should run "git --git-dir "<project_directory>/.git" --work-tree "<project_directory>" commit -am "Dirt project init""
+    And it should run "git --git-dir "<project_directory>/.git" --work-tree "<project_directory>" commit -am "Project init with Dirt.""
     And it should run "git --git-dir "<project_directory>/.git" --work-tree "<project_directory>" push origin master"
   Examples:
     | project_directory                 | project_name     |

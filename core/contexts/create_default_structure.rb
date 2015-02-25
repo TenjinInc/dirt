@@ -31,10 +31,10 @@ module Samling
       FileUtils.mkdir_p(@project_root)
 
       dirs = %w{config
-                dirt/contexts
-                dirt/contexts/roles
-                dirt/models
-                dirt/tests/isolations
+                core/contexts
+                core/contexts/roles
+                core/models
+                core/tests/isolations
                 faces}
 
       dirs.each do |path|
@@ -43,11 +43,11 @@ module Samling
 
       files_to_templates = {'.gitignore' => 'template.gitignore',
                             'Gemfile' => 'template.Gemfile',
-                            "dirt/project_name.rb" => 'template.project_name.rb',
-                            'dirt/tests/behaviours/support/env.rb' => 'template.env.rb',
-                            'dirt/tests/behaviours/step_definitions/given.rb' => nil,
-                            'dirt/tests/behaviours/step_definitions/when.rb' => nil,
-                            'dirt/tests/behaviours/step_definitions/then.rb' => nil}
+                            "core/project_name.rb" => 'template.project_name.rb',
+                            'core/tests/behaviours/support/env.rb' => 'template.env.rb',
+                            'core/tests/behaviours/step_definitions/given.rb' => nil,
+                            'core/tests/behaviours/step_definitions/when.rb' => nil,
+                            'core/tests/behaviours/step_definitions/then.rb' => nil}
 
       Generating.new(files_to_templates).generate_templates(@project_root)
 

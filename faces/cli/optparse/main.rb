@@ -21,7 +21,7 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-src_dir = File.expand_path('../dirt', __FILE__)
+src_dir = File.expand_path('../../../../core', __FILE__)
 $LOAD_PATH.unshift(src_dir) unless $LOAD_PATH.include?(src_dir)
 
 require 'dirt'
@@ -103,7 +103,7 @@ module Samling
 
         parser.parse!(args)
 
-        # config_options = YAML.load_file(options[:config_path] || './config/config.yml')
+        # config_options = YAML.load_file(options[:config_path] || './persist/persist.yml')
         #
         # options = config_options.merge(options)
 

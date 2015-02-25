@@ -1,7 +1,7 @@
 module Samling
   class Generating < Dirt::Role
     def generate_templates(generated_project_root)
-      templates_dir = Dirt::PROJECT_ROOT + 'config/templates/'
+      templates_dir = Dirt::PROJECT_ROOT + 'templates/'
       project_name = generated_project_root.basename.to_s
 
       @decorated.each do |f, t|

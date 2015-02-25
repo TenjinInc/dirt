@@ -16,9 +16,9 @@ Feature: create default face
 
   Scenario Outline: parent directories exist
     Given the following directories exist:
-      | path                                                                 |
-      | <project_path>/dirt/faces/<face_name>/integrations/support/          |
-      | <project_path>/dirt/faces/<face_name>/integrations/step_definitions/ |
+      | path                                                            |
+      | <project_path>/faces/<face_name>/integrations/support/          |
+      | <project_path>/faces/<face_name>/integrations/step_definitions/ |
     When I create a new basic face "<face_name>" at "<project_path>"
     Then there should be files for "<project_name>" from templates:
       | path                                                                     | template        |

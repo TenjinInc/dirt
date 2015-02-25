@@ -44,7 +44,7 @@ module Samling
         path.file? && !path.to_s.include?('/.git/')
       end.each { |f| system(%Q{git --git-dir "#{@project_path}/.git" --work-tree "#{@project_path}" add -v "#{f}"}) }
 
-      system(%Q{git --git-dir "#{@project_path}/.git" --work-tree "#{@project_path}" commit -am "Dirt project init"})
+      system(%Q{git --git-dir "#{@project_path}/.git" --work-tree "#{@project_path}" commit -am "Project init with Dirt."})
 
       system(%Q{git --git-dir "#{@project_path}/.git" --work-tree "#{@project_path}" push origin master})
 

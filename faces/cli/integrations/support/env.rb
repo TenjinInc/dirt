@@ -1,6 +1,6 @@
 require './faces/cli/optparse/main.rb'
 
-require './dirt/tests/behaviours/support/env'
+require './core/tests/behaviours/support/env'
 
 require 'cucumber/rspec/doubles'
 

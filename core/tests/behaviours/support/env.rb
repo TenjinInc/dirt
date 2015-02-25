@@ -1,4 +1,4 @@
-require './dirt/dirt'
+require './core/dirt'
 require 'rspec/matchers'
 require 'fakefs/safe'
 require 'aruba-doubles'
@@ -35,28 +35,28 @@ Before do
   # git add
   double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/Gemfile"})
   double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/.gitignore"})
-  double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/dirt/tests/behaviours/support/env.rb"})
-  double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/config/.gitkeep"})
-  double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/dirt/contexts/.gitkeep"})
-  double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/dirt/contexts/roles/.gitkeep"})
-  double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/dirt/models/.gitkeep"})
-  double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/dirt/tests/behaviours/.gitkeep"})
-  double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/dirt/tests/behaviours/support/.gitkeep"})
-  double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/dirt/tests/behaviours/step_definitions/.gitkeep"})
-  double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/dirt/tests/isolations/.gitkeep"})
+  double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/core/tests/behaviours/support/env.rb"})
+  double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/persist/.gitkeep"})
+  double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/core/contexts/.gitkeep"})
+  double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/core/contexts/roles/.gitkeep"})
+  double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/core/models/.gitkeep"})
+  double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/core/tests/behaviours/.gitkeep"})
+  double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/core/tests/behaviours/support/.gitkeep"})
+  double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/core/tests/behaviours/step_definitions/.gitkeep"})
+  double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/core/tests/isolations/.gitkeep"})
   double_cmd(%q{git --git-dir "/a_path/to/the project/my_project/.git" --work-tree "/a_path/to/the project/my_project" add -v "/a_path/to/the project/my_project/faces/.gitkeep"})
 
   double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/Gemfile"})
   double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/.gitignore"})
-  double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/dirt/tests/behaviours/support/env.rb"})
-  double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/config/.gitkeep"})
-  double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/dirt/contexts/.gitkeep"})
-  double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/dirt/contexts/roles/.gitkeep"})
-  double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/dirt/models/.gitkeep"})
-  double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/dirt/tests/behaviours/.gitkeep"})
-  double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/dirt/tests/behaviours/support/.gitkeep"})
-  double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/dirt/tests/behaviours/step_definitions/.gitkeep"})
-  double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/dirt/tests/isolations/.gitkeep"})
+  double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/core/tests/behaviours/support/env.rb"})
+  double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/persist/.gitkeep"})
+  double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/core/contexts/.gitkeep"})
+  double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/core/contexts/roles/.gitkeep"})
+  double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/core/models/.gitkeep"})
+  double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/core/tests/behaviours/.gitkeep"})
+  double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/core/tests/behaviours/support/.gitkeep"})
+  double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/core/tests/behaviours/step_definitions/.gitkeep"})
+  double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/core/tests/isolations/.gitkeep"})
   double_cmd(%q{git --git-dir "/some/other/path/my_other_project/.git" --work-tree "/some/other/path/my_other_project" add -v "/some/other/path/my_other_project/faces/.gitkeep"})
 
   # git commit/push
@@ -67,8 +67,8 @@ Before do
 
   FakeFS::FileSystem.clear
 
-  # clone all config files into the fake file system
-  Dir['./config/**/*'].each do |file|
+  # clone all persist files into the fake file system
+  Dir['./templates/**/*'].each do |file|
     FakeFS.deactivate!
 
     fake_loc = Dirt::PROJECT_ROOT + file
