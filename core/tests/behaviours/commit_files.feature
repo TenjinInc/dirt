@@ -9,16 +9,15 @@ Feature: it should commit all files and directories to VCS
     When it commits all files and directories in "<project_directory>"
     Then there should be .gitkeep files in exactly the following directories of "<project_directory>"
       | path                  |
-      | config                |
       | core/contexts/roles   |
       | core/models           |
       | core/tests/isolations |
       | faces                 |
+      | persist               |
     And it should run git add on exactly the following files in "<project_directory>":
       | path                                            |
       | Gemfile                                         |
       | .gitignore                                      |
-      | config/.gitkeep                                 |
       | core/<project_name>.rb                          |
       | core/contexts/roles/.gitkeep                    |
       | core/models/.gitkeep                            |
@@ -28,6 +27,7 @@ Feature: it should commit all files and directories to VCS
       | core/tests/behaviours/step_definitions/then.rb  |
       | core/tests/isolations/.gitkeep                  |
       | faces/.gitkeep                                  |
+      | persist/.gitkeep                                |
     And it should run "git --git-dir "<project_directory>/.git" --work-tree "<project_directory>" commit -am "Project init with Dirt.""
     And it should run "git --git-dir "<project_directory>/.git" --work-tree "<project_directory>" push origin master"
   Examples:

@@ -30,12 +30,12 @@ module Samling
     def call
       FileUtils.mkdir_p(@project_root)
 
-      dirs = %w{config
-                core/contexts
+      dirs = %w{core/contexts
                 core/contexts/roles
                 core/models
                 core/tests/isolations
-                faces}
+                faces
+                persist}
 
       dirs.each do |path|
         FileUtils.mkdir_p(@project_root + path)

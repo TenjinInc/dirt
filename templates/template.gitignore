@@ -7,12 +7,9 @@
 # Ignore bundler config
 /.bundle
 
-# Ignore the default SQLite database.
-/db/*.sqlite3
-
 # Ignore all logfiles and tempfiles.
 *.log
-/tmp
+tmp/*
 
 # Rubymine stuff
 .idea
@@ -21,4 +18,4 @@
 *.gem
 
 core/config.yml
-config/database.yml
+persist/database.yml

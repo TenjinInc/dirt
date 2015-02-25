@@ -18,4 +18,5 @@
 # Rubymine stuff
 .idea
 
-app/config.yml
+core/config.yml
+persist/database.yml

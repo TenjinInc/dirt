@@ -4,7 +4,6 @@ Feature: it should create the expected directory tree
     When I create a new project in "<full_project_path>"
     Then there should be exactly the following directories in "/<full_project_path>":
       | path                                   |
-      | config                                 |
       | core                                   |
       | core/contexts                          |
       | core/contexts/roles                    |
@@ -15,6 +14,7 @@ Feature: it should create the expected directory tree
       | core/tests/behaviours/step_definitions |
       | core/tests/isolations                  |
       | faces                                  |
+      | persist                                |
   Examples:
     | full_project_path                |
     | my_project                       |

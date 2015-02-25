@@ -12,7 +12,6 @@ Feature: it should create new project with its default contents and an accompany
     And it should have called "git init --bare <bare path>/<project directory>.git"
     And ls should show the following files in "<parent path>/<project directory>":
       | path                                   |
-      | config                                 |
       | core/contexts                          |
       | core/contexts/roles                    |
       | core/models                            |
@@ -21,6 +20,7 @@ Feature: it should create new project with its default contents and an accompany
       | core/tests/behaviours/step_definitions |
       | core/tests/isolations                  |
       | faces                                  |
+      | persist                                 |
     And it should say "Created project structure in <parent path>/<project directory>."
     And it should say "Comitting and pushing..."
     And it should have called "git --git-dir "<parent path>/<project directory>/.git" --work-tree "<parent path>/<project directory>" push origin master"
