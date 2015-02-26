@@ -81,14 +81,14 @@ Feature: it should create new project with its default contents and an accompany
     | machine1 | userA | some/git        | /a_path/to/the project |
     | machine2 | userB | different/bares | /some/other/path       |
 
-  #  dirt generate project --name NAME --face MEDIUM/ENGINE
+  #  dirt generate project --name NAME --face PLATFORM/ENGINE
   Scenario Outline: Generate project with face
     Given this feature is unimplemented
   Examples:
     | nope |
     |      |
 
-  # dirt generate project --name NAME --location PATH --face MEDIUM/ENGINE
+  # dirt generate project --name NAME --location PATH --face PLATFORM/ENGINE
   Scenario Outline: Generate project with location and face
     Given this feature is unimplemented
   Examples:

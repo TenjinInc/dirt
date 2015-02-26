@@ -1,11 +1,11 @@
 Feature: it should create new face with its default contents
   # === Happy cases ====
-  Scenario Outline: dirt generate face MEDIUM
+  Scenario Outline: dirt generate face PLATFORM
     Given this feature is unimplemented
   Examples:
     | nope |
 
-  Scenario Outline: dirt generate face MEDIUM/ENGINE
+  Scenario Outline: dirt generate face PLATFORM/ENGINE
     Given this feature is unimplemented
   Examples:
     | nope |
@@ -15,11 +15,11 @@ Feature: it should create new face with its default contents
   Scenario: Generate project with name and face but no face arg
     Given this feature is unimplemented
 
-  # dirt generate face no_medium
-  Scenario: Generate face but medium does not exist
+  # dirt generate face no_platform
+  Scenario: Generate face but platform does not exist
     Given this feature is unimplemented
 
-  # dirt generate face medium/no_engine
+  # dirt generate face platform/no_engine
   Scenario: Generate face but engine does not exist
     Given this feature is unimplemented
 
