@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Robin Miller']
   spec.email         = ['robin@tenjin.ca']
   spec.summary       = %q{DIRT: DCI Implementation in Ruby with TDD}
-  spec.description   = %q{Start your projects right with a strong, well-organised directory structure.}
+  spec.description   = %q{Make best practices easy. Come play in the Dirt.}
   spec.homepage      = 'http://www.tenjin.ca'
   spec.license       = 'MIT'
 
