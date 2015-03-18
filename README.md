@@ -2,7 +2,7 @@
 Make best practices easy. Come play in the Dirt.
 
 ##Why Dirt
-The good design means the correct use is the easiest. 
+Good design is when the easiest usage and the correct usage are one in the same. 
 
 Best practices, however, are often an extra effort; many require configuration every time you start a new project.
 Newbies are too busy learning to put in that effort and that quickly develops into bad habits. 
