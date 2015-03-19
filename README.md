@@ -46,7 +46,22 @@ This is where we're headed. If you want to help make it a reality, get in touch!
  - ... Plus some other experimental ideas that BDD enable
 
 ## Prerequisites
-Dirt requires [linux or unix](http://www.ubuntu.com/), [git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git), and [ruby](https://www.ruby-lang.org/en/documentation/installation/).  
+Dirt requires [linux or unix](http://www.ubuntu.com/), [git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [ruby](https://www.ruby-lang.org/en/documentation/installation/), and
+
+
+## Installation
+Dirt is an executable gem. To install it, clone this repository, `cd` into the project root directory and build the gem with:
+```
+gem build dirt.gemspec
+```
+
+This will create a `dirt-0.1.1.gem` in that directory. Now run:
+
+```
+gem install dirt-0.1.1.gem
+```
+
+You can now run dirt on the command line!
 
 ##Usage
 
