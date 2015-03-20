@@ -20,4 +20,15 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 1.9.3'
 
   spec.add_runtime_dependency 'dirt-core', '~> 2.2.2'
+  spec.add_runtime_dependency 'activesupport'
+
+  spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'rspec', '~> 2.14.1'
+  spec.add_development_dependency 'cucumber'
+  spec.add_development_dependency 'capybara'
+  spec.add_development_dependency 'launchy'
+  spec.add_development_dependency 'fakefs'
+  spec.add_development_dependency 'aruba-doubles'
+  spec.add_development_dependency 'factory_girl', '~> 4.0'
+  spec.add_development_dependency 'parallel_tests'
 end
