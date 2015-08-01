@@ -46,7 +46,7 @@ This is where we're headed. If you want to help make it a reality, get in touch!
  - ... Plus some other experimental ideas that BDD enable
 
 ## Prerequisites
-Dirt requires thatyou ahve already installed [linux or unix](http://www.ubuntu.com/), [git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [ruby](https://www.ruby-lang.org/en/documentation/installation/).
+Dirt requires that you have already installed [linux or unix](http://www.ubuntu.com/), [git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [ruby](https://www.ruby-lang.org/en/documentation/installation/).
 
 
 ## Installation
