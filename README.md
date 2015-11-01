@@ -36,6 +36,7 @@ This is what Dirt gets you right now:
 ###Roadmap
 This is where we're headed. If you want to help make it a reality, get in touch!
 
+ - Making [ROM](rom-rb.org) the official recommended persistence library
  - **Face Generation** Web, CLI, and simple mobile. All including integration tests to justify their existence.  
  - **VCS independence** Written around Git right now, other VCSes should be supported, especially distributed ones. 
  - **Project Diffing** Wouldn't it be nice to know what in your project is different form the standards, or the templates?
